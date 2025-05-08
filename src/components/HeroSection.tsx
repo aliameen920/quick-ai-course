@@ -64,20 +64,36 @@ const HeroSection = () => {
           Our comprehensive 30-day course takes you from AI beginner to proficient practitioner with hands-on projects and expert guidance.
         </motion.p>
         
-        {/* CTA buttons */}
+        {/* Video embed replacing CTA button */}
         <motion.div 
           initial="hidden"
           animate="visible"
           variants={textAnimation}
           custom={3}
-          className="flex flex-col sm:flex-row gap-4 min-w-[200px]"
+          className="w-full max-w-2xl mt-4"
+        >
+          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl border border-accent/20">
+            <iframe 
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+              title="AI Course Preview" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </motion.div>
+        
+        {/* Action button underneath video */}
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={textAnimation}
+          custom={4}
+          className="mt-6"
         >
           <Button size="lg" className="bg-accent hover:bg-accent/90 button-glow text-lg px-8 py-6 animate-pulse-soft">
             Buy Now - $149 
             <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-          <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-            View Curriculum
           </Button>
         </motion.div>
         
@@ -91,7 +107,7 @@ const HeroSection = () => {
               custom={4}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="relative mt-12 w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl border cursor-pointer"
+              className="relative mt-12 w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl border cursor-pointer hidden" /* Hidden now */
             >
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5"></div>
               <div className="absolute inset-0 flex items-center justify-center">
