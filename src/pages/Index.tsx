@@ -7,6 +7,7 @@ import CurriculumSection from '@/components/CurriculumSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import PricingSection from '@/components/PricingSection';
 import CTASection from '@/components/CTASection';
+import ScheduleMeetingSection from '@/components/ScheduleMeetingSection';
 import Footer from '@/components/Footer';
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { motion } from "framer-motion";
@@ -34,6 +35,7 @@ const Index = () => {
         <TestimonialsSection />
         <PricingSection />
         <CTASection />
+        <ScheduleMeetingSection />
       </main>
       <Footer />
       
