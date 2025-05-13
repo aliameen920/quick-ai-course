@@ -9,24 +9,36 @@ import PricingSection from '@/components/PricingSection';
 import CTASection from '@/components/CTASection';
 import ScheduleMeetingSection from '@/components/ScheduleMeetingSection';
 import Footer from '@/components/Footer';
-import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import ThemeToggle from '@/components/ThemeToggle';
+import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
 const Index = () => {
   const [showPromo, setShowPromo] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
-    // Show popup after 5 seconds
-    const timer = setTimeout(() => {
-      setShowPromo(true);
-    }, 5000);
+    const handleScroll = () => {
+      // Check if user has scrolled more than 400px
+      if (window.scrollY > 400 && !hasScrolled) {
+        setHasScrolled(true);
+        // Show popup 1 second after scrolling past threshold
+        setTimeout(() => {
+          setShowPromo(true);
+        }, 1000);
+      }
+    };
 
-    return () => clearTimeout(timer);
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasScrolled]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col dark">
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
       <Navbar />
       <main>
         <HeroSection />
@@ -39,10 +51,14 @@ const Index = () => {
       </main>
       <Footer />
       
-      {/* Promotional Popup */}
+      {/* Promotional Popup - Only shows after scrolling */}
       <AlertDialog open={showPromo} onOpenChange={setShowPromo}>
         <AlertDialogTrigger className="hidden">Open Popup</AlertDialogTrigger>
         <AlertDialogContent className="max-w-md rounded-xl overflow-hidden border-none p-0 bg-transparent shadow-2xl">
+          <AlertDialogTitle className="sr-only">Special Launch Offer</AlertDialogTitle>
+          <AlertDialogDescription className="sr-only">
+            Get 30% off when you enroll in our AI Master course today!
+          </AlertDialogDescription>
           <motion.div
             initial={{ scale: 0.8, opacity: 0, rotateY: 90 }}
             animate={{ scale: 1, opacity: 1, rotateY: 0 }}
@@ -52,7 +68,7 @@ const Index = () => {
               damping: 15,
               duration: 0.7 
             }}
-            className="bg-gradient-to-br from-violet-600 to-indigo-700 p-6 rounded-xl relative overflow-hidden"
+            className="bg-gradient-to-br from-violet-600 to-indigo-700 dark:from-violet-700 dark:to-indigo-900 p-6 rounded-xl relative overflow-hidden"
           >
             <motion.div 
               className="absolute top-2 right-2 z-10"

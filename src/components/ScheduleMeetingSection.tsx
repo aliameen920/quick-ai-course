@@ -2,27 +2,28 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Calendar, Clock } from "lucide-react";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ScheduleMeetingSection = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <section className="py-16 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden" id="schedule">
       {/* Background elements */}
       <div className="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
       <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
       
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center text-center mb-12">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-3xl md:text-4xl font-heading font-bold mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-4"
           >
             Not Sure Yet? <span className="gradient-text">Talk to an Expert</span>
           </motion.h2>
@@ -46,10 +47,10 @@ const ScheduleMeetingSection = () => {
           <Card className="max-w-3xl mx-auto overflow-hidden border-2 border-accent/20 shadow-2xl relative bg-gradient-to-br from-background to-card">
             <div className="absolute top-0 right-0 w-40 h-40 bg-accent/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
             
-            <CardContent className="p-8 md:p-10">
+            <CardContent className="p-6 md:p-8 lg:p-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-2xl font-heading font-bold mb-4">Book Your Session</h3>
+                  <h3 className="text-xl md:text-2xl font-heading font-bold mb-4">Book Your Session</h3>
                   <p className="text-muted-foreground mb-6">Get personalized guidance from our expert instructors and discover how this course can accelerate your AI career.</p>
                   
                   <div className="space-y-4 mb-6">
@@ -75,41 +76,12 @@ const ScheduleMeetingSection = () => {
                 </div>
                 
                 <div>
-                  <form className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input id="name" placeholder="Jane Smith" />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input id="email" type="email" placeholder="jane@example.com" />
-                    </div>
-                    
-                    <Separator className="my-4" />
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="date">Preferred Date</Label>
-                      <Input id="date" type="date" />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="time">Preferred Time</Label>
-                      <select id="time" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm">
-                        <option value="">Select a time</option>
-                        <option value="9:00 AM">9:00 AM</option>
-                        <option value="10:00 AM">10:00 AM</option>
-                        <option value="11:00 AM">11:00 AM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="2:00 PM">2:00 PM</option>
-                        <option value="3:00 PM">3:00 PM</option>
-                      </select>
-                    </div>
-                    
-                    <Button type="submit" className="w-full mt-4 bg-accent hover:bg-accent/90">
-                      Schedule Meeting
-                    </Button>
-                  </form>
+                  {/* Replace form with Calendly embed */}
+                  <div className={`calendly-inline-widget ${isMobile ? 'h-[500px]' : 'h-[600px]'}`} 
+                      data-url="https://calendly.com/your-calendly-link" 
+                      style={{ minWidth: '320px' }}>
+                  </div>
+                  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                 </div>
               </div>
             </CardContent>

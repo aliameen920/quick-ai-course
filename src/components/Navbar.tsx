@@ -4,31 +4,37 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  const navItems = ["Features", "Curriculum", "Testimonials", "Pricing", "Schedule"];
 
   return (
     <motion.nav 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full py-4 px-6 md:px-12 flex items-center justify-between"
+      className="w-full py-4 px-4 sm:px-6 md:px-12 flex items-center justify-between sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border/20"
     >
       <div className="flex items-center">
         <motion.h2 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="font-heading font-bold text-2xl gradient-text"
+          className="font-heading font-bold text-xl sm:text-2xl gradient-text"
         >
           AI<span className="text-foreground">Master</span>
         </motion.h2>
       </div>
       
+      {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-        {["Features", "Curriculum", "Testimonials", "Pricing"].map((item, i) => (
+        {navItems.map((item, i) => (
           <motion.a
             key={item}
             href={`#${item.toLowerCase()}`}
@@ -42,6 +48,33 @@ const Navbar = () => {
           </motion.a>
         ))}
       </div>
+      
+      {/* Mobile menu button */}
+      <div className="md:hidden mr-2">
+        <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)}>
+          <Menu className="h-5 w-5" />
+        </Button>
+      </div>
+
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="left" className="w-[250px] sm:w-[300px]">
+          <div className="flex flex-col gap-6 mt-8">
+            <h2 className="font-heading font-bold text-xl gradient-text">AI<span className="text-foreground">Master</span></h2>
+            <div className="flex flex-col space-y-4">
+              {navItems.map((item) => (
+                <a 
+                  key={item} 
+                  href={`#${item.toLowerCase()}`}
+                  className="text-lg font-medium hover:text-accent transition-colors" 
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
       
       <div>
         <Sheet>
