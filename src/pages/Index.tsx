@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -9,7 +8,6 @@ import PricingSection from '@/components/PricingSection';
 import CTASection from '@/components/CTASection';
 import ScheduleMeetingSection from '@/components/ScheduleMeetingSection';
 import Footer from '@/components/Footer';
-import ThemeToggle from '@/components/ThemeToggle';
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
@@ -36,9 +34,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col dark">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
       <Navbar />
       <main>
         <HeroSection />

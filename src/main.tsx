@@ -5,7 +5,7 @@ import './index.css'
 import { ThemeProvider } from './hooks/use-theme'
 
 createRoot(document.getElementById("root")!).render(
-  <ThemeProvider defaultTheme="dark">
+  <ThemeProvider>
     <App />
   </ThemeProvider>
 );
