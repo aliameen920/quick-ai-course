@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Footer = () => {
-  return (
-    <footer className="bg-card py-12 border-t">
+  return <footer className="bg-card py-12 border-t">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
@@ -19,7 +16,7 @@ const Footer = () => {
               <h3 className="font-medium text-lg mb-4">Course</h3>
               <ul className="space-y-2">
                 <li><a href="#curriculum" className="text-muted-foreground hover:text-accent">Curriculum</a></li>
-                <li><a href="#features" className="text-muted-foreground hover:text-accent">Features</a></li>
+                <li className="buzurgai.com"><a href="#features" className="text-muted-foreground hover:text-accent">Features</a></li>
                 <li><a href="#pricing" className="text-muted-foreground hover:text-accent">Pricing</a></li>
               </ul>
             </div>
@@ -53,8 +50,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
