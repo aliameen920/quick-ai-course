@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { motion } from "framer-motion";
@@ -9,46 +9,46 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Load Mailchimp validation script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js";
+    script.async = true;
+    document.body.appendChild(script);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    script.onload = () => {
+      // Initialize Mailchimp validation
+      if (window.jQuery) {
+        const $ = window.jQuery;
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        window.fnames[1] = 'FNAME';
+        window.ftypes[1] = 'text';
+        window.fnames[0] = 'EMAIL';
+        window.ftypes[0] = 'email';
+        window.fnames[4] = 'PHONE';
+        window.ftypes[4] = 'phone';
+        window.fnames[2] = 'LNAME';
+        window.ftypes[2] = 'text';
+        window.fnames[3] = 'ADDRESS';
+        window.ftypes[3] = 'address';
+        window.fnames[5] = 'BIRTHDAY';
+        window.ftypes[5] = 'birthday';
+        window.fnames[6] = 'COMPANY';
+        window.ftypes[6] = 'text';
+        $.noConflict(true);
+      }
+    };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast.success("Your message has been sent!", {
-        description: "We'll get back to you as soon as possible."
-      });
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      setIsSubmitting(false);
-    }, 1500);
-  };
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col dark">
       <Navbar />
-      <main className="flex-1 py-16 md:py-24 relative">
+      <main className="flex-1 py-8 md:py-16 relative">
         <div className="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
         <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
         
@@ -59,14 +59,14 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 md:mb-12">
               <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">Get in Touch</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Have questions about our courses or need help getting started? We're here to help!
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-8 md:mt-16">
               {/* Contact Information */}
               <motion.div 
                 initial={{ opacity: 0, x: -20 }}
@@ -98,8 +98,8 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-medium mb-1">Email</h3>
-                      <p className="text-muted-foreground">contact@aimaster.example.com</p>
-                      <p className="text-muted-foreground">support@aimaster.example.com</p>
+                      <p className="text-muted-foreground">contact@buzurgai.com</p>
+                      <p className="text-muted-foreground">support@buzurgai.com</p>
                     </div>
                   </div>
                   
@@ -146,7 +146,7 @@ const Contact = () => {
                 </div>
               </motion.div>
               
-              {/* Contact Form */}
+              {/* Contact Form - Mailchimp Form */}
               <motion.div 
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -155,42 +155,43 @@ const Contact = () => {
                 <div className="border border-border/40 rounded-lg p-6 bg-card/50 shadow-lg backdrop-blur-sm">
                   <h2 className="text-2xl font-heading font-semibold mb-6">Send Us a Message</h2>
                   
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form 
+                    action="https://gmail.us1.list-manage.com/subscribe/post?u=455f7fd2cfb606dc4995b3a30&amp;id=2a3da9346e&amp;f_id=00041de0f0" 
+                    method="post" 
+                    id="mc-embedded-subscribe-form" 
+                    name="mc-embedded-subscribe-form" 
+                    className="validate space-y-6" 
+                    target="_blank"
+                  >
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</label>
+                      <label htmlFor="mce-FNAME" className="block text-sm font-medium mb-2">Full Name <span className="text-destructive">*</span></label>
                       <Input 
-                        id="name"
-                        name="name"
+                        id="mce-FNAME"
+                        name="FNAME"
                         placeholder="Your full name"
-                        value={formData.name}
-                        onChange={handleChange}
                         required
                         className="w-full"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</label>
+                      <label htmlFor="mce-EMAIL" className="block text-sm font-medium mb-2">Email Address <span className="text-destructive">*</span></label>
                       <Input 
-                        id="email"
-                        name="email"
+                        id="mce-EMAIL"
+                        name="EMAIL"
                         type="email"
                         placeholder="your.email@example.com"
-                        value={formData.email}
-                        onChange={handleChange}
                         required
                         className="w-full"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
+                      <label htmlFor="mce-PHONE" className="block text-sm font-medium mb-2">Phone Number <span className="text-destructive">*</span></label>
                       <Input 
-                        id="subject"
-                        name="subject"
-                        placeholder="What is this regarding?"
-                        value={formData.subject}
-                        onChange={handleChange}
+                        id="mce-PHONE"
+                        name="PHONE"
+                        placeholder="+1 (555) 123-4567"
                         required
                         className="w-full"
                       />
@@ -200,21 +201,24 @@ const Contact = () => {
                       <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
                       <Textarea 
                         id="message"
-                        name="message"
+                        name="MESSAGE"
                         placeholder="How can we help you?"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
                         className="w-full min-h-[150px]"
                       />
                     </div>
                     
+                    {/* Hidden field for bot protection */}
+                    <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+                      <input type="text" name="b_455f7fd2cfb606dc4995b3a30_2a3da9346e" tabIndex={-1} defaultValue="" />
+                    </div>
+                    
                     <Button 
-                      type="submit" 
-                      className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white" 
-                      disabled={isSubmitting}
+                      type="submit"
+                      name="subscribe" 
+                      id="mc-embedded-subscribe"
+                      className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
+                      Send Message
                     </Button>
                   </form>
                 </div>

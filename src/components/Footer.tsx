@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,19 +9,41 @@ import { useToast } from "@/hooks/use-toast";
 const Footer = () => {
   const { toast } = useToast();
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-    
-    // This would normally connect to your newsletter service
-    toast({
-      title: "Subscribed!",
-      description: "Thank you for subscribing to our newsletter.",
-    });
-    
-    form.reset();
-  };
+  // Load Mailchimp validation script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      // Initialize Mailchimp validation
+      if (window.jQuery) {
+        const $ = window.jQuery;
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        window.fnames[0] = 'EMAIL';
+        window.ftypes[0] = 'email';
+        window.fnames[1] = 'FNAME';
+        window.ftypes[1] = 'text';
+        window.fnames[2] = 'LNAME';
+        window.ftypes[2] = 'text';
+        window.fnames[3] = 'ADDRESS';
+        window.ftypes[3] = 'address';
+        window.fnames[4] = 'PHONE';
+        window.ftypes[4] = 'phone';
+        window.fnames[5] = 'BIRTHDAY';
+        window.ftypes[5] = 'birthday';
+        window.fnames[6] = 'COMPANY';
+        window.ftypes[6] = 'text';
+        $.noConflict(true);
+      }
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <footer className="bg-card py-12 border-t">
@@ -66,23 +88,42 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Newsletter */}
+          {/* Newsletter - Mailchimp Form */}
           <div className="md:col-span-4">
             <h3 className="font-medium text-lg mb-4">Subscribe to our Newsletter</h3>
             <p className="text-muted-foreground mb-4">Stay up to date with the latest AI news and course updates</p>
-            <form onSubmit={handleNewsletterSubmit} className="flex space-x-2">
-              <Input 
-                type="email" 
-                name="email" 
-                placeholder="your@email.com" 
-                className="flex-grow" 
-                required 
-              />
-              <Button type="submit" className="bg-accent hover:bg-accent/90">
-                <Mail className="h-4 w-4 mr-2" />
-                Subscribe
-              </Button>
-            </form>
+            
+            <div className="newsletter-form bg-card/50 backdrop-blur-sm border border-border/40 rounded-lg p-4">
+              <form 
+                action="https://gmail.us1.list-manage.com/subscribe/post?u=455f7fd2cfb606dc4995b3a30&amp;id=2a3da9346e&amp;f_id=00051de0f0" 
+                method="post" 
+                id="mc-embedded-subscribe-form" 
+                name="mc-embedded-subscribe-form" 
+                className="validate w-full" 
+                target="_blank"
+              >
+                <div className="flex flex-col space-y-3">
+                  <Input 
+                    type="email" 
+                    name="EMAIL" 
+                    id="mce-EMAIL"
+                    placeholder="your@email.com" 
+                    className="w-full" 
+                    required 
+                  />
+                  
+                  {/* Hidden field for bot protection */}
+                  <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+                    <input type="text" name="b_455f7fd2cfb606dc4995b3a30_2a3da9346e" tabIndex={-1} defaultValue="" />
+                  </div>
+                  
+                  <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700">
+                    <Mail className="h-4 w-4 mr-2" />
+                    Subscribe
+                  </Button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
         
