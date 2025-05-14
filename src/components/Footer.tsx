@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 
 const Footer = () => {
-  const { toast } = useToast();
-
   // Load Mailchimp validation script
   useEffect(() => {
     const script = document.createElement('script');
@@ -40,8 +38,33 @@ const Footer = () => {
       }
     };
 
+    // Handle form submission
+    const handleFormSubmit = (event) => {
+      const form = document.getElementById('mc-embedded-subscribe-form');
+      if (form && form === event.target) {
+        event.preventDefault();
+        const email = form.querySelector('#mce-EMAIL').value;
+        if (email) {
+          // Show success toast notification
+          toast.success("Thank you for subscribing!", {
+            description: "You'll receive our newsletter updates soon.",
+            duration: 5000,
+          });
+          form.reset();
+        }
+        
+        // Allow the form to submit to Mailchimp after showing the toast
+        setTimeout(() => {
+          form.submit();
+        }, 1000);
+      }
+    };
+
+    document.addEventListener('submit', handleFormSubmit);
+
     return () => {
       document.body.removeChild(script);
+      document.removeEventListener('submit', handleFormSubmit);
     };
   }, []);
 
@@ -67,6 +90,7 @@ const Footer = () => {
                 <li><Link to="/curriculum" className="text-muted-foreground hover:text-accent">Curriculum</Link></li>
                 <li><Link to="/features" className="text-muted-foreground hover:text-accent">Features</Link></li>
                 <li><Link to="/pricing" className="text-muted-foreground hover:text-accent">Pricing</Link></li>
+                <li><Link to="/book-now" className="text-muted-foreground hover:text-accent">Book Now</Link></li>
               </ul>
             </div>
             
@@ -84,6 +108,7 @@ const Footer = () => {
                 <li><Link to="/contact" className="text-muted-foreground hover:text-accent">Contact Us</Link></li>
                 <li><Link to="/privacy" className="text-muted-foreground hover:text-accent">Privacy Policy</Link></li>
                 <li><Link to="/terms" className="text-muted-foreground hover:text-accent">Terms & Conditions</Link></li>
+                <li><Link to="/ai-resources" className="text-muted-foreground hover:text-accent">AI Resources</Link></li>
               </ul>
             </div>
           </div>
