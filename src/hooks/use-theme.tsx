@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
 type Theme = "dark" | "light"
 
@@ -21,19 +21,23 @@ export function ThemeProvider({
   // We'll use state to manage the theme but always default to dark
   const [theme, setTheme] = useState<Theme>("dark")
 
-  // Always set dark theme regardless of state
-  // This ensures the site is always in dark mode
-  const root = window.document.documentElement
-  root.classList.remove("light")
-  root.classList.add("dark")
+  // Use useEffect to apply the dark theme after component mounts
+  // This ensures we're not manipulating the DOM during render
+  useEffect(() => {
+    // Always set dark theme regardless of state
+    // This ensures the site is always in dark mode
+    const root = window.document.documentElement
+    root.classList.remove("light")
+    root.classList.add("dark")
+  }, []) // Empty dependency array ensures this only runs once on mount
 
   return (
     <ThemeProviderContext.Provider
       {...props}
       value={{
-        theme, 
+        theme,
         // This function is included but won't actually change the appearance
-        // since we're forcing dark mode in the code above
+        // since we're forcing dark mode in the useEffect above
         setTheme: (newTheme) => {
           setTheme(newTheme)
         }
