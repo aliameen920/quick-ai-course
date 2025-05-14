@@ -2,264 +2,158 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar as CalendarIcon, Clock } from "lucide-react";
-import { motion } from "framer-motion";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Switch } from "@/components/ui/switch";
-import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
-import { toast } from "sonner";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { motion } from "framer-motion";
+import { format } from "date-fns";
+import { ArrowRight, CalendarIcon, Clock } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const ScheduleMeetingSection = () => {
-  const isMobile = useIsMobile();
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
-  const [selectedTime, setSelectedTime] = useState<string | null>("1:00 PM");
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [time, setTime] = useState<string | undefined>();
   
-  // Function to handle the booking button click
-  const handleBookNow = () => {
-    // Show a toast notification
-    toast.success("Redirecting you to the booking page...");
-    
-    // You can replace this URL with your actual Calendly or booking page URL
-    window.open("https://your-calendly-link-here.com", "_blank");
+  // Generate time slots from 9am to 5pm
+  const timeSlots = Array.from({ length: 17 }, (_, i) => {
+    const hour = Math.floor((i + 18) / 2);
+    const minute = (i + 18) % 2 === 0 ? '00' : '30';
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const hour12 = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+    return `${hour12}:${minute} ${ampm}`;
+  });
+
+  // Redirect to external booking site
+  const handleScheduleMeeting = () => {
+    // This could redirect to your actual booking system
+    window.open('https://calendly.com', '_blank');
   };
 
-  // List of available times
-  const availableTimes = ["10:00 AM", "1:00 PM", "3:30 PM", "5:00 PM"];
-
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden" id="schedule">
-      {/* Background elements */}
-      <div className="absolute -top-24 -right-24 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
-      
+    <section id="schedule" className="py-20 bg-gradient-to-t from-muted/30 to-background">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="px-4 py-1.5 text-xs md:text-sm rounded-full border border-accent/40 bg-accent/5 text-accent inline-block mb-4"
-          >
-            Book a personalized session
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4"
-          >
-            Ready to <span className="gradient-text">Transform</span> Your AI Skills?
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-muted-foreground max-w-2xl text-lg"
-          >
-            Schedule a free consultation with one of our AI instructors who can answer your questions and help you determine if this course is the right fit for you.
-          </motion.p>
+        <div className="text-center mb-12">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            Schedule Your <span className="gradient-text">Free Consultation</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Book a call with our AI experts to discuss how our course can help you achieve your learning goals and advance your career
+          </p>
         </div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <Card className="max-w-5xl mx-auto overflow-hidden border-2 border-accent/20 shadow-2xl relative bg-gradient-to-br from-background/80 to-card/50 backdrop-blur-sm">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-accent/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
-            
+
+        <div className="max-w-4xl mx-auto">
+          <Card className="border shadow-lg overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Left side - Information */}
-                <div className="p-6 md:p-10 space-y-8">
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-heading font-bold mb-6">Meet Our AI Experts</h3>
-                    <p className="text-muted-foreground mb-6">Get personalized guidance from our expert instructors and discover how this course can accelerate your AI career.</p>
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="p-6 md:p-8 border-b md:border-b-0 md:border-r">
+                  <h3 className="text-xl font-semibold mb-4">Select a Date & Time</h3>
                   
-                  <div className="space-y-5">
-                    <div className="flex items-center gap-3 text-lg">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 text-accent">
-                        <Clock className="h-5 w-5" />
-                      </div>
-                      <span className="font-medium">30 minute complimentary session</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-lg">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 text-accent">
-                        <CalendarIcon className="h-5 w-5" />
-                      </div>
-                      <span className="font-medium">Available Monday-Friday</span>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-card/50 rounded-xl p-5 border border-border/40">
-                    <h4 className="font-semibold text-lg mb-3 text-accent">What to expect:</h4>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-2">
-                        <div className="rounded-full bg-accent/20 p-1 mt-0.5">
-                          <svg className="h-3 w-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <span className="text-muted-foreground">Personalized course overview tailored to your goals</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <div className="rounded-full bg-accent/20 p-1 mt-0.5">
-                          <svg className="h-3 w-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <span className="text-muted-foreground">Opportunity to ask questions about curriculum</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <div className="rounded-full bg-accent/20 p-1 mt-0.5">
-                          <svg className="h-3 w-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                          </svg>
-                        </div>
-                        <span className="text-muted-foreground">Discussion about career opportunities and outcomes</span>
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <div className="pt-4">
-                    <Button 
-                      onClick={handleBookNow}
-                      className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      Schedule Your Free Consultation
-                      <span className="ml-2">→</span>
-                    </Button>
-                    <p className="text-center text-sm text-muted-foreground mt-3">No credit card required • No obligation to enroll</p>
-                  </div>
-                </div>
-                
-                {/* Right side - Calendar visual */}
-                <div className="relative">
-                  <div className="hidden lg:block h-full">
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20">
-                      <div className="absolute inset-0 backdrop-blur-sm">
-                        <AspectRatio ratio={3/4} className="h-full">
-                          <div className="w-full h-full p-10 flex flex-col justify-center items-center">
-                            <div className="w-full max-w-sm bg-background/90 rounded-xl border border-border/50 p-5 shadow-xl">
-                              <div className="flex justify-between items-center mb-6">
-                                <h4 className="font-medium">
-                                  {selectedDate ? format(selectedDate, 'MMMM yyyy') : 'Select a date'}
-                                </h4>
-                                <div className="flex space-x-1">
-                                  <button className="p-1.5 rounded-md hover:bg-muted">
-                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                  </button>
-                                  <button className="p-1.5 rounded-md hover:bg-muted">
-                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                  </button>
-                                </div>
-                              </div>
-                              
-                              {/* Real interactive calendar */}
-                              <Calendar
-                                mode="single"
-                                selected={selectedDate}
-                                onSelect={setSelectedDate}
-                                className="rounded-md"
-                              />
-                              
-                              <div className="mt-6 space-y-4">
-                                <h5 className="font-medium">Available Times</h5>
-                                <div className="grid grid-cols-2 gap-2">
-                                  {availableTimes.map((time) => (
-                                    <button 
-                                      key={time} 
-                                      onClick={() => setSelectedTime(time)}
-                                      className={`p-2 text-sm border border-border rounded-md ${
-                                        selectedTime === time 
-                                          ? 'bg-accent text-white' 
-                                          : 'hover:bg-accent/10'
-                                      }`}
-                                    >
-                                      {time}
-                                    </button>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="mt-10 w-full max-w-sm">
-                              <div className="bg-background/90 rounded-xl border border-border/50 p-5 shadow-xl">
-                                <div className="flex items-center justify-between">
-                                  <div className="flex items-center gap-4">
-                                    <Switch id="email-notifications" defaultChecked />
-                                    <label htmlFor="email-notifications" className="text-sm">
-                                      Email notifications
-                                    </label>
-                                  </div>
-                                  <div className="text-sm text-accent">
-                                    15 min before
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </AspectRatio>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Mobile view */}
-                  <div className="lg:hidden p-6 pb-10 flex flex-col items-center">
-                    <CalendarIcon className="h-16 w-16 text-accent mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">Ready to book?</h3>
-                    <p className="text-muted-foreground text-center mb-6">Select a date and time for your free consultation session.</p>
-                    
-                    <div className="w-full mb-6">
-                      <Calendar
-                        mode="single"
-                        selected={selectedDate}
-                        onSelect={setSelectedDate}
-                        className="rounded-md mx-auto"
-                      />
-                    </div>
-                    
-                    <h5 className="font-medium mb-3">Available Times</h5>
-                    <div className="grid grid-cols-2 gap-2 w-full mb-6">
-                      {availableTimes.map((time) => (
-                        <button 
-                          key={time} 
-                          onClick={() => setSelectedTime(time)}
-                          className={`p-2 text-sm border border-border rounded-md ${
-                            selectedTime === time 
-                              ? 'bg-accent text-white' 
-                              : 'hover:bg-accent/10'
-                          }`}
+                  {/* Date Selection */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2">Date</label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full justify-start text-left font-normal",
+                            !date && "text-muted-foreground"
+                          )}
                         >
-                          {time}
-                        </button>
-                      ))}
-                    </div>
-                    
+                          <CalendarIcon className="mr-2 h-4 w-4" />
+                          {date ? format(date, "PPP") : <span>Pick a date</span>}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={date}
+                          onSelect={setDate}
+                          initialFocus
+                          className="p-3 pointer-events-auto"
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  
+                  {/* Time Selection */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2">Time</label>
+                    <Select value={time} onValueChange={setTime}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select a time">
+                          <div className="flex items-center">
+                            <Clock className="mr-2 h-4 w-4" />
+                            {time || "Select a time"}
+                          </div>
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {timeSlots.map((slot) => (
+                          <SelectItem key={slot} value={slot}>
+                            {slot}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Button 
-                      onClick={handleBookNow}
-                      className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-6"
+                      onClick={handleScheduleMeeting}
+                      className="w-full bg-accent hover:bg-accent/90 button-glow"
+                      size="lg"
                     >
-                      Schedule Your Free Consultation
-                      <span className="ml-2">→</span>
+                      Book Your Free Consultation
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
+                  </motion.div>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-600/10 to-blue-600/10 p-6 md:p-8">
+                  <h3 className="text-xl font-semibold mb-4">What to Expect</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-accent">✓</span>
+                      </div>
+                      <span>15-minute personalized session with an AI expert</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-accent">✓</span>
+                      </div>
+                      <span>Custom learning path based on your goals</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-accent">✓</span>
+                      </div>
+                      <span>Answers to all your questions about the course</span>
+                    </li>
+                    <li className="flex items-start">
+                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-accent">✓</span>
+                      </div>
+                      <span>Exclusive discounts for early enrollment</span>
+                    </li>
+                  </ul>
+                  
+                  <div className="mt-6 p-4 border border-accent/30 rounded-lg bg-accent/5">
+                    <p className="italic text-sm">
+                      "Our consultation helped me determine if this course was right for my career goals. 
+                      The team was knowledgeable and helped me make the right decision."
+                    </p>
+                    <p className="text-sm font-medium mt-2">— David K., Course Graduate</p>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

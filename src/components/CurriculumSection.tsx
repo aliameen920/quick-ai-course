@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const CurriculumSection = () => {
   const modules = [
@@ -27,7 +28,7 @@ const CurriculumSection = () => {
   ];
 
   return (
-    <section id="curriculum" className="py-20 bg-muted/50">
+    <section id="curriculum" className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container px-4 md:px-6">
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">
           30-Day <span className="gradient-text">Curriculum</span>
@@ -38,29 +39,56 @@ const CurriculumSection = () => {
 
         <div className="space-y-6">
           {modules.map((module, index) => (
-            <Card key={index} className="border overflow-hidden">
-              <div className="flex flex-col md:flex-row">
-                <div className="bg-accent md:w-1/4 p-6 flex items-center justify-center">
-                  <h3 className="text-2xl font-bold text-white">{module.week}</h3>
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="border overflow-hidden card-3d-effect">
+                <div className="flex flex-col md:flex-row">
+                  <div className="bg-gradient-to-br from-accent to-accent/70 md:w-1/4 p-6 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-accent-foreground">{module.week}</h3>
+                  </div>
+                  <CardContent className="md:w-3/4 p-6">
+                    <h4 className="text-xl font-semibold mb-3">{module.title}</h4>
+                    <ul className="space-y-2">
+                      {module.topics.map((topic, i) => (
+                        <li key={i} className="flex items-start">
+                          <div className="mr-2 mt-1 h-2 w-2 rounded-full bg-accent"></div>
+                          <span>{topic}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
                 </div>
-                <CardContent className="md:w-3/4 p-6">
-                  <h4 className="text-xl font-semibold mb-3">{module.title}</h4>
-                  <ul className="space-y-2">
-                    {module.topics.map((topic, i) => (
-                      <li key={i} className="flex items-start">
-                        <div className="mr-2 mt-1 h-2 w-2 rounded-full bg-accent"></div>
-                        <span>{topic}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button 
+              size="lg" 
+              className="bg-accent hover:bg-accent/90 button-glow text-lg"
+            >
+              Enroll Now
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
+// We need to import Button and ArrowRight
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export default CurriculumSection;

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -11,6 +12,7 @@ import Footer from '@/components/Footer';
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [showPromo, setShowPromo] = useState(false);
@@ -46,7 +48,7 @@ const Index = () => {
       </main>
       <Footer />
       
-      {/* Promotional Popup - Only shows after scrolling */}
+      {/* Promotional Popup with image - Only shows after scrolling */}
       <AlertDialog open={showPromo} onOpenChange={setShowPromo}>
         <AlertDialogTrigger className="hidden">Open Popup</AlertDialogTrigger>
         <AlertDialogContent className="max-w-md rounded-xl overflow-hidden border-none p-0 bg-transparent shadow-2xl">
@@ -63,7 +65,7 @@ const Index = () => {
               damping: 15,
               duration: 0.7 
             }}
-            className="bg-gradient-to-br from-violet-600 to-indigo-700 dark:from-violet-700 dark:to-indigo-900 p-6 rounded-xl relative overflow-hidden"
+            className="bg-gradient-to-br from-violet-600 to-indigo-700 dark:from-violet-700 dark:to-indigo-900 p-0 rounded-xl relative overflow-hidden"
           >
             <motion.div 
               className="absolute top-2 right-2 z-10"
@@ -78,11 +80,23 @@ const Index = () => {
               </button>
             </motion.div>
             
+            {/* Banner Image */}
+            <div className="w-full h-32 bg-gradient-to-r from-purple-400 to-indigo-500 relative overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" 
+                alt="AI Technology" 
+                className="w-full h-full object-cover opacity-60"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <h3 className="text-2xl font-bold text-white drop-shadow-lg">30% OFF</h3>
+              </div>
+            </div>
+            
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="z-20 relative"
+              className="z-20 relative p-6"
             >
               <motion.h3 
                 className="text-2xl font-bold text-white mb-2"
@@ -103,12 +117,12 @@ const Index = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <button 
+                <Button 
                   className="w-full bg-white text-indigo-700 hover:bg-white/90 font-medium py-2 rounded-md" 
                   onClick={() => setShowPromo(false)}
                 >
                   Claim Your 30% Discount Now
-                </button>
+                </Button>
               </motion.div>
               
               <p className="text-white/70 text-sm mt-3 text-center">Limited time offer. Expires in 24 hours.</p>

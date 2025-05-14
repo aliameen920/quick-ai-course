@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -85,6 +84,51 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px) translateX(0px);
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+    }
+    100% {
+      transform: translateY(0px) translateX(0px);
+    }
+  }
+
+  @keyframes float-delay {
+    0% {
+      transform: translateY(0px) translateX(0px);
+    }
+    50% {
+      transform: translateY(20px) translateX(-10px);
+    }
+    100% {
+      transform: translateY(0px) translateX(0px);
+    }
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
 }
 
 @layer base {
@@ -116,6 +160,27 @@
   html {
     @apply scroll-smooth;
   }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delay {
+    animation: float-delay 7s ease-in-out infinite;
+  }
+
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
+  }
+
+  .testimonial-card-animated {
+    @apply transition-all duration-500 hover:scale-[1.03] hover:shadow-xl;
+  }
 }
 
 /* Make Calendly responsive */
@@ -124,4 +189,21 @@
   min-width: 320px;
   height: 630px;
   overflow: hidden;
+}
+
+.card-animated-pulse {
+  @apply animate-pulse;
+}
+
+.card-3d-effect {
+  @apply transition-transform duration-300 hover:rotate-1 hover:scale-[1.02];
+}
+
+/* Carousel for testimonials */
+.testimonials-carousel {
+  @apply overflow-hidden relative;
+}
+
+.testimonials-track {
+  @apply flex transition-transform duration-500;
 }

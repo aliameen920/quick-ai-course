@@ -1,17 +1,42 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
 const Footer = () => {
-  return <footer className="bg-card py-12 border-t">
+  const { toast } = useToast();
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    
+    // This would normally connect to your newsletter service
+    toast({
+      title: "Subscribed!",
+      description: "Thank you for subscribing to our newsletter.",
+    });
+    
+    form.reset();
+  };
+
+  return (
+    <footer className="bg-card py-12 border-t">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* Logo and Description */}
+          <div className="md:col-span-3">
             <h2 className="font-heading font-bold text-2xl gradient-text">AI<span className="text-foreground">Master</span></h2>
-            <p className="text-muted-foreground mt-2 max-w-xs">
+            <p className="text-muted-foreground mt-2">
               Master artificial intelligence skills in just 30 days with our comprehensive course.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          {/* Navigation Links */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:col-span-5">
             <div>
               <h3 className="font-medium text-lg mb-4">Course</h3>
               <ul className="space-y-2">
@@ -39,6 +64,25 @@ const Footer = () => {
               </ul>
             </div>
           </div>
+          
+          {/* Newsletter */}
+          <div className="md:col-span-4">
+            <h3 className="font-medium text-lg mb-4">Subscribe to our Newsletter</h3>
+            <p className="text-muted-foreground mb-4">Stay up to date with the latest AI news and course updates</p>
+            <form onSubmit={handleNewsletterSubmit} className="flex space-x-2">
+              <Input 
+                type="email" 
+                name="email" 
+                placeholder="your@email.com" 
+                className="flex-grow" 
+                required 
+              />
+              <Button type="submit" className="bg-accent hover:bg-accent/90">
+                <Mail className="h-4 w-4 mr-2" />
+                Subscribe
+              </Button>
+            </form>
+          </div>
         </div>
         
         <div className="mt-12 pt-6 border-t text-center text-muted-foreground text-sm">
@@ -50,6 +94,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

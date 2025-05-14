@@ -1,27 +1,59 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isMobile = useIsMobile();
 
-  const navItems = ["Features", "Curriculum", "Testimonials", "Pricing", "Schedule"];
+  const navItems = [
+    { name: "Features", href: "#features" },
+    { name: "Curriculum", href: "#curriculum" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "Schedule", href: "#schedule" }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <motion.nav 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full py-4 px-4 sm:px-6 md:px-12 flex items-center justify-between sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border/20"
+      className={`w-full py-3 px-4 sm:px-6 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300 ${
+        scrolled 
+          ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border/20" 
+          : "bg-transparent"
+      }`}
     >
       <div className="flex items-center">
+        {/* Mobile menu button on left for mobile */}
+        {isMobile && (
+          <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)} className="mr-2">
+            <Menu className="h-5 w-5" />
+          </Button>
+        )}
+        
         <motion.h2 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -33,29 +65,23 @@ const Navbar = () => {
       </div>
       
       {/* Desktop Menu */}
-      <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+      <div className="hidden md:flex items-center gap-6 text-sm font-medium">
         {navItems.map((item, i) => (
           <motion.a
-            key={item}
-            href={`#${item.toLowerCase()}`}
+            key={item.name}
+            href={item.href}
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.1 * (i + 1), duration: 0.5 }}
             whileHover={{ y: -3 }}
             className="hover:text-accent transition-colors relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-center"
           >
-            {item}
+            {item.name}
           </motion.a>
         ))}
       </div>
       
-      {/* Mobile menu button */}
-      <div className="md:hidden mr-2">
-        <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)}>
-          <Menu className="h-5 w-5" />
-        </Button>
-      </div>
-
+      {/* Mobile menu sheet */}
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetContent side="left" className="w-[250px] sm:w-[300px]">
           <div className="flex flex-col gap-6 mt-8">
@@ -63,14 +89,23 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name} 
+                  href={item.href}
                   className="text-lg font-medium hover:text-accent transition-colors" 
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
+            </div>
+            
+            <div className="mt-4 pt-4 border-t">
+              <Button className="w-full" variant="outline" asChild>
+                <Link to="/about">About Us</Link>
+              </Button>
+              <Button className="w-full mt-2" variant="outline" asChild>
+                <Link to="/contact">Contact</Link>
+              </Button>
             </div>
           </div>
         </SheetContent>
