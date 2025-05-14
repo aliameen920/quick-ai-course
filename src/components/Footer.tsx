@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -26,7 +27,7 @@ const Footer = () => {
             <div>
               <h3 className="font-medium text-lg mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-muted-foreground hover:text-accent">About</a></li>
+                <li><Link to="/about" className="text-muted-foreground hover:text-accent">About</Link></li>
                 <li><a href="#" className="text-muted-foreground hover:text-accent">Blog</a></li>
                 <li><a href="#testimonials" className="text-muted-foreground hover:text-accent">Testimonials</a></li>
               </ul>
@@ -35,9 +36,9 @@ const Footer = () => {
             <div>
               <h3 className="font-medium text-lg mb-4">Support</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-muted-foreground hover:text-accent">FAQs</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-accent">Contact</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-accent">Privacy Policy</a></li>
+                <li><Link to="/contact" className="text-muted-foreground hover:text-accent">Contact Us</Link></li>
+                <li><Link to="/privacy" className="text-muted-foreground hover:text-accent">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="text-muted-foreground hover:text-accent">Terms & Conditions</Link></li>
               </ul>
             </div>
           </div>
@@ -45,6 +46,11 @@ const Footer = () => {
         
         <div className="mt-12 pt-6 border-t text-center text-muted-foreground text-sm">
           <p>© {new Date().getFullYear()} AIMaster. All rights reserved.</p>
+          <div className="flex justify-center space-x-4 mt-4">
+            <Link to="/privacy" className="hover:text-accent">Privacy</Link>
+            <Link to="/terms" className="hover:text-accent">Terms</Link>
+            <Link to="/contact" className="hover:text-accent">Contact</Link>
+          </div>
         </div>
       </div>
     </footer>

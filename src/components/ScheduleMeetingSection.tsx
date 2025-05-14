@@ -1,15 +1,32 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, Clock } from "lucide-react";
+import { Calendar as CalendarIcon, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Switch } from "@/components/ui/switch";
+import { format } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
+import { toast } from "sonner";
 
 const ScheduleMeetingSection = () => {
   const isMobile = useIsMobile();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const [selectedTime, setSelectedTime] = useState<string | null>("1:00 PM");
+  
+  // Function to handle the booking button click
+  const handleBookNow = () => {
+    // Show a toast notification
+    toast.success("Redirecting you to the booking page...");
+    
+    // You can replace this URL with your actual Calendly or booking page URL
+    window.open("https://your-calendly-link-here.com", "_blank");
+  };
+
+  // List of available times
+  const availableTimes = ["10:00 AM", "1:00 PM", "3:30 PM", "5:00 PM"];
 
   return (
     <section className="py-16 md:py-24 relative overflow-hidden" id="schedule">
@@ -76,7 +93,7 @@ const ScheduleMeetingSection = () => {
                     </div>
                     <div className="flex items-center gap-3 text-lg">
                       <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 text-accent">
-                        <Calendar className="h-5 w-5" />
+                        <CalendarIcon className="h-5 w-5" />
                       </div>
                       <span className="font-medium">Available Monday-Friday</span>
                     </div>
@@ -114,6 +131,7 @@ const ScheduleMeetingSection = () => {
                   
                   <div className="pt-4">
                     <Button 
+                      onClick={handleBookNow}
                       className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       Schedule Your Free Consultation
@@ -132,7 +150,9 @@ const ScheduleMeetingSection = () => {
                           <div className="w-full h-full p-10 flex flex-col justify-center items-center">
                             <div className="w-full max-w-sm bg-background/90 rounded-xl border border-border/50 p-5 shadow-xl">
                               <div className="flex justify-between items-center mb-6">
-                                <h4 className="font-medium">May 2025</h4>
+                                <h4 className="font-medium">
+                                  {selectedDate ? format(selectedDate, 'MMMM yyyy') : 'Select a date'}
+                                </h4>
                                 <div className="flex space-x-1">
                                   <button className="p-1.5 rounded-md hover:bg-muted">
                                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -146,39 +166,31 @@ const ScheduleMeetingSection = () => {
                                   </button>
                                 </div>
                               </div>
-                              <div className="grid grid-cols-7 gap-2 text-center mb-3">
-                                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
-                                  <div key={i} className="text-xs text-muted-foreground">{day}</div>
-                                ))}
-                              </div>
-                              <div className="grid grid-cols-7 gap-2">
-                                {[...Array(31)].map((_, i) => {
-                                  const day = i + 1;
-                                  const isAvailable = [3, 5, 8, 10, 12, 15, 17, 19, 22, 24, 26, 29].includes(day);
-                                  const isSelected = day === 15;
-                                  return (
-                                    <button 
-                                      key={i} 
-                                      className={`p-2 rounded-md text-sm ${
-                                        isSelected 
-                                          ? 'bg-accent text-white' 
-                                          : isAvailable 
-                                            ? 'hover:bg-accent/20' 
-                                            : 'text-muted-foreground/50'
-                                      }`}
-                                    >
-                                      {day}
-                                    </button>
-                                  );
-                                })}
-                              </div>
+                              
+                              {/* Real interactive calendar */}
+                              <Calendar
+                                mode="single"
+                                selected={selectedDate}
+                                onSelect={setSelectedDate}
+                                className="rounded-md"
+                              />
+                              
                               <div className="mt-6 space-y-4">
                                 <h5 className="font-medium">Available Times</h5>
                                 <div className="grid grid-cols-2 gap-2">
-                                  <button className="p-2 text-sm border border-border rounded-md hover:bg-accent/10">10:00 AM</button>
-                                  <button className="p-2 text-sm border border-border rounded-md bg-accent text-white">1:00 PM</button>
-                                  <button className="p-2 text-sm border border-border rounded-md hover:bg-accent/10">3:30 PM</button>
-                                  <button className="p-2 text-sm border border-border rounded-md hover:bg-accent/10">5:00 PM</button>
+                                  {availableTimes.map((time) => (
+                                    <button 
+                                      key={time} 
+                                      onClick={() => setSelectedTime(time)}
+                                      className={`p-2 text-sm border border-border rounded-md ${
+                                        selectedTime === time 
+                                          ? 'bg-accent text-white' 
+                                          : 'hover:bg-accent/10'
+                                      }`}
+                                    >
+                                      {time}
+                                    </button>
+                                  ))}
                                 </div>
                               </div>
                             </div>
@@ -202,15 +214,44 @@ const ScheduleMeetingSection = () => {
                       </div>
                     </div>
                   </div>
-                  {/* Mobile view will just show a simplified version */}
+                  
+                  {/* Mobile view */}
                   <div className="lg:hidden p-6 pb-10 flex flex-col items-center">
-                    <Calendar className="h-16 w-16 text-accent mb-4" />
+                    <CalendarIcon className="h-16 w-16 text-accent mb-4" />
                     <h3 className="text-xl font-semibold mb-2">Ready to book?</h3>
-                    <p className="text-muted-foreground text-center mb-6">Click the button below to schedule your free consultation session.</p>
+                    <p className="text-muted-foreground text-center mb-6">Select a date and time for your free consultation session.</p>
+                    
+                    <div className="w-full mb-6">
+                      <Calendar
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={setSelectedDate}
+                        className="rounded-md mx-auto"
+                      />
+                    </div>
+                    
+                    <h5 className="font-medium mb-3">Available Times</h5>
+                    <div className="grid grid-cols-2 gap-2 w-full mb-6">
+                      {availableTimes.map((time) => (
+                        <button 
+                          key={time} 
+                          onClick={() => setSelectedTime(time)}
+                          className={`p-2 text-sm border border-border rounded-md ${
+                            selectedTime === time 
+                              ? 'bg-accent text-white' 
+                              : 'hover:bg-accent/10'
+                          }`}
+                        >
+                          {time}
+                        </button>
+                      ))}
+                    </div>
+                    
                     <Button 
+                      onClick={handleBookNow}
                       className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-6"
                     >
-                      Open Calendar
+                      Schedule Your Free Consultation
                       <span className="ml-2">→</span>
                     </Button>
                   </div>
