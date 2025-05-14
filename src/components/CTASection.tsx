@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const CTASection = () => {
   return (
-    <section className="py-20">
+    <section className="py-12 md:py-20">
       <div className="container px-4 md:px-6">
         <div className="bg-gradient-to-r from-accent/90 to-primary/90 rounded-2xl p-8 md:p-12 shadow-lg relative overflow-hidden">
           {/* Background decoration */}
@@ -22,12 +22,16 @@ const CTASection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" className="bg-white text-accent hover:bg-white/90 button-glow text-lg px-8 py-6">
-                Buy Now - $149
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" className="bg-white text-accent hover:bg-white/90 button-glow text-lg px-8 py-6" asChild>
+                <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+                  Buy Now - $149
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-white text-white hover:bg-white/10">
-                View Course Details
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-white text-white hover:bg-white/10" asChild>
+                <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+                  View Course Details
+                </a>
               </Button>
             </div>
             

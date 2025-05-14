@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -28,6 +28,7 @@ const TestimonialsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const controls = useAnimation();
   const carouselRef = useRef<HTMLDivElement>(null);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % testimonials.length);
@@ -37,15 +38,22 @@ const TestimonialsSection = () => {
     setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  // Set up autoplay for both desktop and mobile
   useEffect(() => {
-    if (isMobile) {
-      // Auto-slide on mobile
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 4000);
-      return () => clearInterval(interval);
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
     }
-  }, [isMobile]);
+    
+    autoplayRef.current = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (isMobile && carouselRef.current) {
@@ -57,66 +65,91 @@ const TestimonialsSection = () => {
   }, [currentSlide, controls, isMobile]);
 
   const renderDesktopView = () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {testimonials.map((testimonial, index) => (
-        <motion.div
-          key={index}
+    <div className="relative">
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={currentSlide}
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="h-full"
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          <Card className="border bg-card/50 backdrop-blur-sm h-full testimonial-card-animated">
-            <CardContent className="p-6 flex flex-col h-full">
-              <div className="mb-4">
-                {Array(5).fill(0).map((_, i) => (
-                  <span key={i} className="text-yellow-500">★</span>
-                ))}
-              </div>
-              <blockquote className="text-lg mb-6 flex-grow">
-                "{testimonial.quote}"
-              </blockquote>
-              <div>
-                <p className="font-medium">{testimonial.name}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-              </div>
-            </CardContent>
-          </Card>
+          {testimonials.map((testimonial, index) => (
+            <Card 
+              key={index} 
+              className={`border bg-card/50 backdrop-blur-sm h-full transition-all duration-500 transform testimonial-card-animated ${
+                index === currentSlide % testimonials.length ? "scale-105 border-accent/50" : ""
+              }`}
+            >
+              <CardContent className="p-6 flex flex-col h-full">
+                <div className="mb-4">
+                  {Array(5).fill(0).map((_, i) => (
+                    <span key={i} className="text-yellow-500">★</span>
+                  ))}
+                </div>
+                <blockquote className="text-lg mb-6 flex-grow">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div>
+                  <p className="font-medium">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </motion.div>
-      ))}
+      </AnimatePresence>
+      
+      <div className="absolute inset-y-0 left-0 flex items-center">
+        <button
+          onClick={prevSlide}
+          className="bg-card/70 hover:bg-card p-2 rounded-full shadow-lg text-foreground/70 hover:text-foreground"
+          aria-label="Previous testimonial"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+      </div>
+      
+      <div className="absolute inset-y-0 right-0 flex items-center">
+        <button
+          onClick={nextSlide}
+          className="bg-card/70 hover:bg-card p-2 rounded-full shadow-lg text-foreground/70 hover:text-foreground"
+          aria-label="Next testimonial"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
+      </div>
     </div>
   );
 
   const renderMobileCarousel = () => (
-    <div className="relative testimonials-carousel w-full">
+    <div className="relative testimonials-carousel w-full overflow-hidden">
       <motion.div 
         ref={carouselRef}
-        className="testimonials-track w-full"
+        className="testimonials-track flex"
         animate={controls}
       >
-        <div className="flex">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="w-full flex-shrink-0">
-              <Card className="border bg-card/50 backdrop-blur-sm mx-2">
-                <CardContent className="p-6 flex flex-col">
-                  <div className="mb-4">
-                    {Array(5).fill(0).map((_, i) => (
-                      <span key={i} className="text-yellow-500">★</span>
-                    ))}
-                  </div>
-                  <blockquote className="text-lg mb-6">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <div>
-                    <p className="font-medium">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </div>
+        {testimonials.map((testimonial, index) => (
+          <div key={index} className="w-full flex-shrink-0 px-2">
+            <Card className="border bg-card/50 backdrop-blur-sm">
+              <CardContent className="p-6 flex flex-col">
+                <div className="mb-4">
+                  {Array(5).fill(0).map((_, i) => (
+                    <span key={i} className="text-yellow-500">★</span>
+                  ))}
+                </div>
+                <blockquote className="text-lg mb-6">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div>
+                  <p className="font-medium">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
       </motion.div>
       
       <div className="absolute bottom-0 left-0 right-0 flex justify-center space-x-2 pb-4">
@@ -124,8 +157,8 @@ const TestimonialsSection = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2 h-2 rounded-full ${
-              index === currentSlide ? "bg-accent" : "bg-gray-400"
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentSlide ? "bg-accent w-4" : "bg-gray-400"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -133,7 +166,7 @@ const TestimonialsSection = () => {
       </div>
       
       <button 
-        className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md"
+        className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md z-10"
         onClick={prevSlide}
         aria-label="Previous testimonial"
       >
@@ -141,7 +174,7 @@ const TestimonialsSection = () => {
       </button>
       
       <button 
-        className="absolute top-1/2 right-2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md"
+        className="absolute top-1/2 right-2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md z-10"
         onClick={nextSlide}
         aria-label="Next testimonial"
       >

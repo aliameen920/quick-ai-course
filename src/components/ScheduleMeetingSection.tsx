@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
 import { ArrowRight, CalendarIcon, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,8 +25,7 @@ const ScheduleMeetingSection = () => {
 
   // Redirect to external booking site
   const handleScheduleMeeting = () => {
-    // This could redirect to your actual booking system
-    window.open('https://calendly.com', '_blank');
+    window.open('https://buzurgai.com', '_blank');
   };
 
   return (
@@ -71,6 +70,11 @@ const ScheduleMeetingSection = () => {
                           onSelect={setDate}
                           initialFocus
                           className="p-3 pointer-events-auto"
+                          disabled={(date) => {
+                            const today = new Date();
+                            today.setHours(0, 0, 0, 0);
+                            return date < today;
+                          }}
                         />
                       </PopoverContent>
                     </Popover>
@@ -88,10 +92,20 @@ const ScheduleMeetingSection = () => {
                           </div>
                         </SelectValue>
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent 
+                        className="h-[300px] overflow-y-auto bg-background border-border shadow-lg"
+                        position="popper"
+                      >
                         {timeSlots.map((slot) => (
-                          <SelectItem key={slot} value={slot}>
-                            {slot}
+                          <SelectItem 
+                            key={slot} 
+                            value={slot}
+                            className="cursor-pointer hover:bg-accent/20"
+                          >
+                            <div className="flex items-center">
+                              <Clock className="mr-2 h-4 w-4 text-accent" />
+                              {slot}
+                            </div>
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -106,9 +120,12 @@ const ScheduleMeetingSection = () => {
                       onClick={handleScheduleMeeting}
                       className="w-full bg-accent hover:bg-accent/90 button-glow"
                       size="lg"
+                      asChild
                     >
-                      Book Your Free Consultation
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+                        Book Your Free Consultation
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </a>
                     </Button>
                   </motion.div>
                 </div>

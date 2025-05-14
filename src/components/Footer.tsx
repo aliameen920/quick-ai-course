@@ -29,7 +29,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Logo and Description */}
           <div className="md:col-span-3">
-            <h2 className="font-heading font-bold text-2xl gradient-text">AI<span className="text-foreground">Master</span></h2>
+            <h2 className="font-heading font-bold text-2xl">
+              <span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span>
+            </h2>
             <p className="text-muted-foreground mt-2">
               Master artificial intelligence skills in just 30 days with our comprehensive course.
             </p>
@@ -40,9 +42,9 @@ const Footer = () => {
             <div>
               <h3 className="font-medium text-lg mb-4">Course</h3>
               <ul className="space-y-2">
-                <li><a href="#curriculum" className="text-muted-foreground hover:text-accent">Curriculum</a></li>
-                <li className="buzurgai.com"><a href="#features" className="text-muted-foreground hover:text-accent">Features</a></li>
-                <li><a href="#pricing" className="text-muted-foreground hover:text-accent">Pricing</a></li>
+                <li><Link to="/curriculum" className="text-muted-foreground hover:text-accent">Curriculum</Link></li>
+                <li><Link to="/features" className="text-muted-foreground hover:text-accent">Features</Link></li>
+                <li><Link to="/pricing" className="text-muted-foreground hover:text-accent">Pricing</Link></li>
               </ul>
             </div>
             
@@ -50,8 +52,7 @@ const Footer = () => {
               <h3 className="font-medium text-lg mb-4">Company</h3>
               <ul className="space-y-2">
                 <li><Link to="/about" className="text-muted-foreground hover:text-accent">About</Link></li>
-                <li><a href="#" className="text-muted-foreground hover:text-accent">Blog</a></li>
-                <li><a href="#testimonials" className="text-muted-foreground hover:text-accent">Testimonials</a></li>
+                <li><Link to="/testimonials" className="text-muted-foreground hover:text-accent">Testimonials</Link></li>
               </ul>
             </div>
             
@@ -86,7 +87,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} AIMaster. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} BuzurgAI. All rights reserved.</p>
           <div className="flex justify-center space-x-4 mt-4">
             <Link to="/privacy" className="hover:text-accent">Privacy</Link>
             <Link to="/terms" className="hover:text-accent">Terms</Link>

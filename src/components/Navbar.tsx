@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link } from 'react-router-dom';
 
@@ -58,9 +58,9 @@ const Navbar = () => {
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="font-heading font-bold text-xl sm:text-2xl gradient-text"
+          className="font-heading font-bold text-xl sm:text-2xl"
         >
-          AI<span className="text-foreground">Master</span>
+          <span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span>
         </motion.h2>
       </div>
       
@@ -85,7 +85,7 @@ const Navbar = () => {
       <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <SheetContent side="left" className="w-[250px] sm:w-[300px]">
           <div className="flex flex-col gap-6 mt-8">
-            <h2 className="font-heading font-bold text-xl gradient-text">AI<span className="text-foreground">Master</span></h2>
+            <h2 className="font-heading font-bold text-xl"><span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span></h2>
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <a 
@@ -112,37 +112,16 @@ const Navbar = () => {
       </Sheet>
       
       <div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button className="bg-accent hover:bg-accent/90 button-glow">
-                Get Started
-              </Button>
-            </motion.div>
-          </SheetTrigger>
-          <SheetContent className="w-full sm:max-w-md">
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold gradient-text">Join AI Master Course</h2>
-              <p className="text-muted-foreground">Fill out this form to get exclusive access to our AI course materials.</p>
-              <div className="space-y-4">
-                <div className="grid gap-2">
-                  <label htmlFor="name" className="text-sm font-medium">Name</label>
-                  <input id="name" className="border rounded p-2 w-full" placeholder="Your name" />
-                </div>
-                <div className="grid gap-2">
-                  <label htmlFor="email" className="text-sm font-medium">Email</label>
-                  <input id="email" className="border rounded p-2 w-full" placeholder="you@example.com" type="email" />
-                </div>
-                <Button className="w-full mt-4 bg-accent hover:bg-accent/90">
-                  Start Your AI Journey
-                </Button>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button className="bg-accent hover:bg-accent/90 button-glow" asChild>
+            <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+              Get Started
+            </a>
+          </Button>
+        </motion.div>
 
         <AlertDialog open={showPopup} onOpenChange={setShowPopup}>
           <AlertDialogTrigger className="hidden">Open Popup</AlertDialogTrigger>
@@ -176,8 +155,11 @@ const Navbar = () => {
                 <Button 
                   className="w-full bg-white text-indigo-700 hover:bg-white/90" 
                   onClick={() => setShowPopup(false)}
+                  asChild
                 >
-                  Claim Discount
+                  <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+                    Claim Discount
+                  </a>
                 </Button>
               </motion.div>
               

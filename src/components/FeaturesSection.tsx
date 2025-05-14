@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, GraduationCap, Zap, Book, Monitor } from "lucide-react";
+import { Brain, GraduationCap, Zap, Book, Monitor, Code } from "lucide-react";
 
 const FeaturesSection = () => {
   const features = [
@@ -29,6 +29,11 @@ const FeaturesSection = () => {
       title: "Interactive Sessions",
       description: "Weekly live Q&A sessions to clarify concepts and get feedback",
       icon: <Monitor className="h-12 w-12 text-accent" />
+    },
+    {
+      title: "AI Integration Skills",
+      description: "Learn to integrate AI models into real-world applications and businesses",
+      icon: <Code className="h-12 w-12 text-accent" />
     }
   ];
 

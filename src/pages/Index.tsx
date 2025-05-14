@@ -37,7 +37,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col dark">
       <Navbar />
-      <main>
+      <main className="flex-grow">
         <HeroSection />
         <FeaturesSection />
         <CurriculumSection />
@@ -118,10 +118,12 @@ const Index = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
-                  className="w-full bg-white text-indigo-700 hover:bg-white/90 font-medium py-2 rounded-md" 
-                  onClick={() => setShowPromo(false)}
+                  className="w-full bg-white text-indigo-700 hover:bg-white/90 font-medium py-2 rounded-md"
+                  asChild 
                 >
-                  Claim Your 30% Discount Now
+                  <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+                    Claim Your 30% Discount Now
+                  </a>
                 </Button>
               </motion.div>
               
