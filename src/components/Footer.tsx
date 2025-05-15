@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "@/components/ui/use-toast";
 
 const Footer = () => {
   // Load Mailchimp validation script
@@ -39,23 +39,26 @@ const Footer = () => {
     };
 
     // Handle form submission
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = (event: Event) => {
       const form = document.getElementById('mc-embedded-subscribe-form');
       if (form && form === event.target) {
         event.preventDefault();
-        const email = form.querySelector('#mce-EMAIL').value;
-        if (email) {
+        const emailElement = form.querySelector('#mce-EMAIL') as HTMLInputElement;
+        if (emailElement && emailElement.value) {
           // Show success toast notification
-          toast.success("Thank you for subscribing!", {
+          toast({
+            title: "Thank you for subscribing!",
             description: "You'll receive our newsletter updates soon.",
             duration: 5000,
           });
-          form.reset();
+          
+          // Reset the form using the form element's reset method
+          (form as HTMLFormElement).reset();
         }
         
         // Allow the form to submit to Mailchimp after showing the toast
         setTimeout(() => {
-          form.submit();
+          (form as HTMLFormElement).submit();
         }, 1000);
       }
     };

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
+import { toast } from "@/components/ui/use-toast";
 import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
@@ -42,26 +42,29 @@ const Contact = () => {
     };
 
     // Handle form submission
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = (event: Event) => {
       const form = document.getElementById('mc-embedded-subscribe-form');
       if (form && form === event.target) {
         event.preventDefault();
-        const name = form.querySelector('#mce-FNAME').value;
-        const email = form.querySelector('#mce-EMAIL').value;
-        const phone = form.querySelector('#mce-PHONE').value;
+        const nameElement = form.querySelector('#mce-FNAME') as HTMLInputElement;
+        const emailElement = form.querySelector('#mce-EMAIL') as HTMLInputElement;
+        const phoneElement = form.querySelector('#mce-PHONE') as HTMLInputElement;
         
-        if (name && email && phone) {
+        if (nameElement?.value && emailElement?.value && phoneElement?.value) {
           // Show success toast notification
-          toast.success("Message sent successfully!", {
+          toast({
+            title: "Message sent successfully!",
             description: "Thank you for contacting us. We'll get back to you soon.",
             duration: 5000,
           });
-          form.reset();
+          
+          // Reset the form using the form element's reset method
+          (form as HTMLFormElement).reset();
         }
         
         // Allow the form to submit to Mailchimp after showing the toast
         setTimeout(() => {
-          form.submit();
+          (form as HTMLFormElement).submit();
         }, 1000);
       }
     };
