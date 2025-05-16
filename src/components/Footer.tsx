@@ -90,10 +90,10 @@ const Footer = () => {
             <div>
               <h3 className="font-medium text-lg mb-4">Course</h3>
               <ul className="space-y-2">
-                <li><Link to="/curriculum" className="text-muted-foreground hover:text-accent">Curriculum</Link></li>
-                <li><Link to="/features" className="text-muted-foreground hover:text-accent">Features</Link></li>
-                <li><Link to="/pricing" className="text-muted-foreground hover:text-accent">Pricing</Link></li>
-                <li><Link to="/book-now" className="text-muted-foreground hover:text-accent">Book Now</Link></li>
+                <li><a href="#curriculum" className="text-muted-foreground hover:text-accent">Curriculum</a></li>
+                <li><a href="#features" className="text-muted-foreground hover:text-accent">Features</a></li>
+                <li><a href="#pricing" className="text-muted-foreground hover:text-accent">Pricing</a></li>
+                <li><a href="#book-now" className="text-muted-foreground hover:text-accent">Book Now</a></li>
               </ul>
             </div>
             
@@ -101,7 +101,7 @@ const Footer = () => {
               <h3 className="font-medium text-lg mb-4">Company</h3>
               <ul className="space-y-2">
                 <li><Link to="/about" className="text-muted-foreground hover:text-accent">About</Link></li>
-                <li><Link to="/testimonials" className="text-muted-foreground hover:text-accent">Testimonials</Link></li>
+                <li><a href="#testimonials" className="text-muted-foreground hover:text-accent">Testimonials</a></li>
               </ul>
             </div>
             

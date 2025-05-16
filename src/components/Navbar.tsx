@@ -49,9 +49,39 @@ const Navbar = () => {
       <div className="flex items-center">
         {/* Mobile menu button on left for mobile */}
         {isMobile && (
-          <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)} className="mr-2">
-            <Menu className="h-5 w-5" />
-          </Button>
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="mr-2">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[250px] sm:w-[300px] overflow-y-auto">
+              <div className="flex flex-col gap-6 mt-8">
+                <h2 className="font-heading font-bold text-xl"><span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span></h2>
+                <div className="flex flex-col space-y-4">
+                  {navItems.map((item) => (
+                    <a 
+                      key={item.name} 
+                      href={item.href}
+                      className="text-lg font-medium hover:text-accent transition-colors" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+                
+                <div className="mt-4 pt-4 border-t">
+                  <Button className="w-full" variant="outline" onClick={() => setMobileMenuOpen(false)}>
+                    About Us
+                  </Button>
+                  <Button className="w-full mt-2" variant="outline" onClick={() => setMobileMenuOpen(false)}>
+                    Contact
+                  </Button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         )}
         
         <motion.h2 
@@ -60,7 +90,9 @@ const Navbar = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="font-heading font-bold text-xl sm:text-2xl"
         >
-          <span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span>
+          <Link to="/" className="text-foreground">
+            <span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span>
+          </Link>
         </motion.h2>
       </div>
       
@@ -81,45 +113,13 @@ const Navbar = () => {
         ))}
       </div>
       
-      {/* Mobile menu sheet */}
-      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-        <SheetContent side="left" className="w-[250px] sm:w-[300px]">
-          <div className="flex flex-col gap-6 mt-8">
-            <h2 className="font-heading font-bold text-xl"><span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span></h2>
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href}
-                  className="text-lg font-medium hover:text-accent transition-colors" 
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-            
-            <div className="mt-4 pt-4 border-t">
-              <Button className="w-full" variant="outline" asChild>
-                <Link to="/about">About Us</Link>
-              </Button>
-              <Button className="w-full mt-2" variant="outline" asChild>
-                <Link to="/contact">Contact</Link>
-              </Button>
-            </div>
-          </div>
-        </SheetContent>
-      </Sheet>
-      
       <div>
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button className="bg-accent hover:bg-accent/90 button-glow" asChild>
-            <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
-              Get Started
-            </a>
+          <Button className="bg-accent hover:bg-accent/90 button-glow">
+            Get Started
           </Button>
         </motion.div>
 
@@ -155,11 +155,8 @@ const Navbar = () => {
                 <Button 
                   className="w-full bg-white text-indigo-700 hover:bg-white/90" 
                   onClick={() => setShowPopup(false)}
-                  asChild
                 >
-                  <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
-                    Claim Discount
-                  </a>
+                  Claim Discount
                 </Button>
               </motion.div>
               

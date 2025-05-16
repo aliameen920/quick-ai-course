@@ -16,26 +16,27 @@ import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [showPromo, setShowPromo] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
-
+  
   useEffect(() => {
-    const handleScroll = () => {
-      // Check if user has scrolled more than 400px
-      if (window.scrollY > 400 && !hasScrolled) {
-        setHasScrolled(true);
-        // Show popup 1 second after scrolling past threshold
-        setTimeout(() => {
-          setShowPromo(true);
-        }, 1000);
+    // Exit intent detection
+    const handleMouseLeave = (e) => {
+      // If the mouse leaves towards the top of the page, show the popup
+      if (e.clientY <= 0) {
+        setShowPromo(true);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasScrolled]);
+    // Add exit intent detector
+    document.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Clean up
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col dark">
+    <div className="min-h-screen flex flex-col dark overflow-x-hidden">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
@@ -48,7 +49,7 @@ const Index = () => {
       </main>
       <Footer />
       
-      {/* Promotional Popup with image - Only shows after scrolling */}
+      {/* Promotional Popup with image - Only shows on exit intent */}
       <AlertDialog open={showPromo} onOpenChange={setShowPromo}>
         <AlertDialogTrigger className="hidden">Open Popup</AlertDialogTrigger>
         <AlertDialogContent className="max-w-md rounded-xl overflow-hidden border-none p-0 bg-transparent shadow-2xl">
@@ -119,11 +120,8 @@ const Index = () => {
               >
                 <Button 
                   className="w-full bg-white text-indigo-700 hover:bg-white/90 font-medium py-2 rounded-md"
-                  asChild 
                 >
-                  <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
-                    Claim Your 30% Discount Now
-                  </a>
+                  Claim Your 30% Discount Now
                 </Button>
               </motion.div>
               
