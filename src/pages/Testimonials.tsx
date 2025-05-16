@@ -11,9 +11,9 @@ const Testimonials = () => {
   return (
     <div className="min-h-screen flex flex-col dark">
       <Helmet>
-        <title>BuzurgAI Student Testimonials | Real Success Stories</title>
-        <meta name="description" content="Read real testimonials from BuzurgAI students who have transformed their careers and businesses with our comprehensive AI course." />
-        <meta name="keywords" content="AI course testimonials, student reviews, AI training success stories, BuzurgAI reviews, artificial intelligence course feedback" />
+        <title>Master AI Student Testimonials | Real Success Stories</title>
+        <meta name="description" content="Read real testimonials from Master AI students who have transformed their careers and businesses with our comprehensive AI course." />
+        <meta name="keywords" content="AI course testimonials, student reviews, AI training success stories, Master AI reviews, artificial intelligence course feedback" />
       </Helmet>
       
       <Navbar />
@@ -39,10 +39,8 @@ const Testimonials = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-accent hover:bg-accent/90 button-glow" size="lg" asChild>
-                <a href="https://nas.io/checkout-global?communityId=67d943d3a0941b6b5877b8d6&communityCode=BUZURG_AI_3&requestor=signupRequestor&linkClicked=https%3A%2F%2Fnas.io%2Fbuzurg" target="_blank" rel="noopener noreferrer">
-                  Join Our Community
-                </a>
+              <Button className="bg-accent hover:bg-accent/90 button-glow" size="lg">
+                Join Our Community
               </Button>
             </motion.div>
           </div>

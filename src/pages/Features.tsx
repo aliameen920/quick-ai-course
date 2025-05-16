@@ -11,7 +11,7 @@ const Features = () => {
   return (
     <div className="min-h-screen flex flex-col dark">
       <Helmet>
-        <title>BuzurgAI Course Features | Premium AI Training Experience</title>
+        <title>Master AI Course Features | Premium AI Training Experience</title>
         <meta name="description" content="Discover what makes our AI course exceptional. Expert-led lessons, hands-on projects, fast-track learning, and comprehensive resources to accelerate your AI journey." />
         <meta name="keywords" content="AI course features, artificial intelligence training, hands-on AI projects, expert-led AI lessons, interactive AI learning" />
       </Helmet>
@@ -39,10 +39,8 @@ const Features = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-accent hover:bg-accent/90 button-glow" size="lg" asChild>
-                <a href="https://nas.io/checkout-global?communityId=67d943d3a0941b6b5877b8d6&communityCode=BUZURG_AI_3&requestor=signupRequestor&linkClicked=https%3A%2F%2Fnas.io%2Fbuzurg" target="_blank" rel="noopener noreferrer">
-                  Start Your Journey
-                </a>
+              <Button className="bg-accent hover:bg-accent/90 button-glow" size="lg">
+                Start Your Journey
               </Button>
             </motion.div>
           </div>

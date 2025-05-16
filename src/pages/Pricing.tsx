@@ -10,9 +10,9 @@ const Pricing = () => {
   return (
     <div className="min-h-screen flex flex-col dark">
       <Helmet>
-        <title>BuzurgAI Course Pricing | Affordable AI Training Options</title>
-        <meta name="description" content="View our flexible pricing options for BuzurgAI courses. We offer affordable plans to make comprehensive AI training accessible to everyone." />
-        <meta name="keywords" content="AI course pricing, artificial intelligence training cost, affordable AI education, BuzurgAI course fees" />
+        <title>Master AI Course Pricing | Affordable AI Training Options</title>
+        <meta name="description" content="View our flexible pricing options for Master AI courses. We offer affordable plans to make comprehensive AI training accessible to everyone." />
+        <meta name="keywords" content="AI course pricing, artificial intelligence training cost, affordable AI education, Master AI course fees" />
       </Helmet>
       
       <Navbar />

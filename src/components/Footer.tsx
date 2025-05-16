@@ -78,7 +78,7 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="md:col-span-3">
             <h2 className="font-heading font-bold text-2xl">
-              <span className="text-foreground">Buzurg</span><span className="gradient-text">AI</span>
+              <span className="text-foreground">Master</span><span className="gradient-text">AI</span>
             </h2>
             <p className="text-muted-foreground mt-2">
               Master artificial intelligence skills in just 30 days with our comprehensive course.
@@ -156,7 +156,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} BuzurgAI. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Master AI. All rights reserved.</p>
           <div className="flex justify-center space-x-4 mt-4">
             <Link to="/privacy" className="hover:text-accent">Privacy</Link>
             <Link to="/terms" className="hover:text-accent">Terms</Link>

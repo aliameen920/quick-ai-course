@@ -50,7 +50,7 @@ const About = () => {
                 transition={{ duration: 0.8 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6"
               >
-                About <span className="gradient-text">AIMaster</span>
+                About <span className="gradient-text">Master AI</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ const About = () => {
               <h2 className="text-3xl font-heading font-bold mb-6">Our Story</h2>
               <div className="space-y-6 text-lg">
                 <p>
-                  AIMaster was founded in 2023 by a team of AI researchers and educators who recognized that traditional education was failing to keep up with the rapid advancement of artificial intelligence technologies.
+                  Master AI was founded in 2023 by a team of AI researchers and educators who recognized that traditional education was failing to keep up with the rapid advancement of artificial intelligence technologies.
                 </p>
                 <p>
                   What began as a series of workshops for tech professionals has grown into a comprehensive AI education platform that has helped thousands of students and professionals harness the power of artificial intelligence in their careers.
@@ -186,7 +186,7 @@ const About = () => {
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto text-center"
             >
-              <h2 className="text-3xl font-heading font-bold mb-12">Why Choose AIMaster</h2>
+              <h2 className="text-3xl font-heading font-bold mb-12">Why Choose Master AI</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                   <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-accent/10 text-accent">
