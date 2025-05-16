@@ -11,7 +11,7 @@ const Features = () => {
   return (
     <div className="min-h-screen flex flex-col dark">
       <Helmet>
-        <title>Master AI Course Features | Premium AI Training Experience</title>
+        <title>MWPro Growth Course Features | Premium AI Training Experience</title>
         <meta name="description" content="Discover what makes our AI course exceptional. Expert-led lessons, hands-on projects, fast-track learning, and comprehensive resources to accelerate your AI journey." />
         <meta name="keywords" content="AI course features, artificial intelligence training, hands-on AI projects, expert-led AI lessons, interactive AI learning" />
       </Helmet>

@@ -55,7 +55,7 @@ const Index = () => {
         <AlertDialogContent className="max-w-md rounded-xl overflow-hidden border-none p-0 bg-transparent shadow-2xl">
           <AlertDialogTitle className="sr-only">Special Launch Offer</AlertDialogTitle>
           <AlertDialogDescription className="sr-only">
-            Get 30% off when you enroll in our AI Master course today!
+            Get 30% off when you enroll in our MWPro Growth course today!
           </AlertDialogDescription>
           <motion.div
             initial={{ scale: 0.8, opacity: 0, rotateY: 90 }}
@@ -112,7 +112,7 @@ const Index = () => {
               >
                 🎉 Special Launch Offer!
               </motion.h3>
-              <p className="text-white/90 mb-4">Get 30% off when you enroll in our AI Master course today!</p>
+              <p className="text-white/90 mb-4">Get 30% off when you enroll in our <span className="gradient-text font-bold">MWPro</span><span className="text-white font-bold"> Growth</span> course today!</p>
               
               <motion.div
                 whileHover={{ scale: 1.05 }}

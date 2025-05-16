@@ -57,7 +57,7 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent side="left" className="w-[250px] sm:w-[300px] overflow-y-auto">
               <div className="flex flex-col gap-6 mt-8">
-                <h2 className="font-heading font-bold text-xl"><span className="text-foreground">Master</span><span className="gradient-text">AI</span></h2>
+                <h2 className="font-heading font-bold text-xl"><span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span></h2>
                 <div className="flex flex-col space-y-4">
                   {navItems.map((item) => (
                     <a 
@@ -91,7 +91,7 @@ const Navbar = () => {
           className="font-heading font-bold text-xl sm:text-2xl"
         >
           <Link to="/" className="text-foreground">
-            <span className="text-foreground">Master</span><span className="gradient-text">AI</span>
+            <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
           </Link>
         </motion.h2>
       </div>

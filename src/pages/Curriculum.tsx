@@ -11,7 +11,7 @@ const Curriculum = () => {
   return (
     <div className="min-h-screen flex flex-col dark">
       <Helmet>
-        <title>Master AI Curriculum | Comprehensive 30-Day AI Course</title>
+        <title>MWPro Growth Curriculum | Comprehensive 30-Day AI Course</title>
         <meta name="description" content="Explore our comprehensive AI curriculum. Our 30-day structured program takes you from fundamentals to advanced AI concepts with hands-on projects." />
         <meta name="keywords" content="AI curriculum, artificial intelligence course, machine learning syllabus, deep learning program, 30-day AI course" />
       </Helmet>
@@ -33,8 +33,6 @@ const Curriculum = () => {
           </motion.div>
           
           <CurriculumSection />
-          
-          {/* Removed the extra "Enroll Now" button here */}
         </div>
       </main>
       <Footer />

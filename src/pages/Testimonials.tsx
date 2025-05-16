@@ -11,9 +11,9 @@ const Testimonials = () => {
   return (
     <div className="min-h-screen flex flex-col dark">
       <Helmet>
-        <title>Master AI Student Testimonials | Real Success Stories</title>
-        <meta name="description" content="Read real testimonials from Master AI students who have transformed their careers and businesses with our comprehensive AI course." />
-        <meta name="keywords" content="AI course testimonials, student reviews, AI training success stories, Master AI reviews, artificial intelligence course feedback" />
+        <title>MWPro Growth Student Testimonials | Real Success Stories</title>
+        <meta name="description" content="Read real testimonials from MWPro Growth students who have transformed their careers and businesses with our comprehensive AI course." />
+        <meta name="keywords" content="AI course testimonials, student reviews, AI training success stories, MWPro Growth reviews, artificial intelligence course feedback" />
       </Helmet>
       
       <Navbar />
