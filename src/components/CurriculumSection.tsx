@@ -48,15 +48,15 @@ const CurriculumSection = () => {
             >
               <Card className="border overflow-hidden card-3d-effect">
                 <div className="flex flex-col md:flex-row">
-                  <div className="bg-gradient-to-br from-accent to-accent/70 md:w-1/4 p-6 flex items-center justify-center">
-                    <h3 className="text-2xl font-bold text-accent-foreground">{module.week}</h3>
+                  <div className="bg-gradient-to-br from-mwpro-blue to-mwpro-light-blue md:w-1/4 p-6 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white">{module.week}</h3>
                   </div>
                   <CardContent className="md:w-3/4 p-6">
                     <h4 className="text-xl font-semibold mb-3">{module.title}</h4>
                     <ul className="space-y-2">
                       {module.topics.map((topic, i) => (
                         <li key={i} className="flex items-start">
-                          <div className="mr-2 mt-1 h-2 w-2 rounded-full bg-accent"></div>
+                          <div className="mr-2 mt-1 h-2 w-2 rounded-full bg-mwpro-light-blue"></div>
                           <span>{topic}</span>
                         </li>
                       ))}
@@ -75,7 +75,7 @@ const CurriculumSection = () => {
           >
             <Button 
               size="lg" 
-              className="bg-accent hover:bg-accent/90 button-glow text-lg"
+              className="bg-mwpro-blue hover:bg-mwpro-blue/90 text-white button-glow text-lg"
             >
               Enroll Now
               <ArrowRight className="ml-2 h-5 w-5" />

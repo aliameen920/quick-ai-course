@@ -41,3 +41,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.button-mwpro {
+  background-color: #0F4C81;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.button-mwpro:hover {
+  background-color: #65B2E8;
+  box-shadow: 0 0 15px rgba(101, 178, 232, 0.5);
+}
