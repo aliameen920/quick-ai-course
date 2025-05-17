@@ -25,8 +25,8 @@ const PricingSection = () => {
         </p>
 
         <div className="max-w-md mx-auto">
-          <Card className="border-2 border-accent overflow-hidden">
-            <div className="absolute -top-8 -right-8 h-24 w-24 bg-accent/20 rounded-full blur-xl"></div>
+          <Card className="border-2 border-mwpro-light-blue overflow-hidden">
+            <div className="absolute -top-8 -right-8 h-24 w-24 bg-mwpro-light-blue/20 rounded-full blur-xl"></div>
             <CardHeader className="pb-0 pt-6 px-6 text-center">
               <CardTitle className="text-3xl font-bold">Complete AI Course</CardTitle>
               <div className="mt-4 text-5xl font-bold">$149</div>
@@ -36,14 +36,14 @@ const PricingSection = () => {
               <ul className="space-y-3">
                 {features.map((feature, index) => (
                   <li key={index} className="flex items-center">
-                    <Check className="h-5 w-5 text-accent mr-2 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-mwpro-light-blue mr-2 flex-shrink-0" />
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
             </CardContent>
             <CardFooter className="px-6 pb-6">
-              <Button className="w-full bg-accent hover:bg-accent/90 button-glow text-lg py-6">
+              <Button className="w-full bg-mwpro-blue hover:bg-mwpro-blue/90 button-mwpro text-lg py-6">
                 Buy Now
               </Button>
             </CardFooter>

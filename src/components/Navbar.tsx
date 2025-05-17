@@ -58,7 +58,6 @@ const Navbar = () => {
             <SheetContent side="left" className="w-[250px] sm:w-[300px] overflow-y-auto">
               <div className="flex flex-col gap-6 mt-8">
                 <div className="flex items-center gap-2">
-                  <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
                   <h2 className="font-heading font-bold text-xl"><span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span></h2>
                 </div>
                 <div className="flex flex-col space-y-4">
@@ -93,7 +92,10 @@ const Navbar = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="flex items-center gap-2"
         >
-          <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
+          {/* Only show logo on desktop */}
+          {!isMobile && (
+            <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
+          )}
           <h2 className="font-heading font-bold text-xl sm:text-2xl">
             <Link to="/" className="text-foreground">
               <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
@@ -124,7 +126,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button className="bg-mwpro-blue hover:bg-mwpro-blue/90 button-glow">
+          <Button className="bg-mwpro-blue hover:bg-mwpro-blue/90 button-mwpro">
             Get Started
           </Button>
         </motion.div>

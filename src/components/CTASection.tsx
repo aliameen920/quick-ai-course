@@ -7,7 +7,7 @@ const CTASection = () => {
   return (
     <section className="py-12 md:py-20">
       <div className="container px-4 md:px-6">
-        <div className="bg-gradient-to-r from-accent/90 to-primary/90 rounded-2xl p-8 md:p-12 shadow-lg relative overflow-hidden">
+        <div className="bg-gradient-to-r from-mwpro-blue to-mwpro-light-blue rounded-2xl p-8 md:p-12 shadow-lg relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full"></div>
           <div className="absolute bottom-0 left-1/4 w-32 h-32 bg-white/10 rounded-full"></div>
@@ -22,14 +22,14 @@ const CTASection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" className="bg-white text-accent hover:bg-white/90 button-glow text-lg px-8 py-6" asChild>
-                <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-white text-mwpro-blue hover:bg-white/90 button-glow text-lg px-8 py-6" asChild>
+                <a href="https://mwprogrowth.com" target="_blank" rel="noopener noreferrer">
                   Buy Now - $149
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-white text-white hover:bg-white/10" asChild>
-                <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://mwprogrowth.com" target="_blank" rel="noopener noreferrer">
                   View Course Details
                 </a>
               </Button>

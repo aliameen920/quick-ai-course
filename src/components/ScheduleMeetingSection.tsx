@@ -25,7 +25,7 @@ const ScheduleMeetingSection = () => {
 
   // Redirect to external booking site
   const handleScheduleMeeting = () => {
-    window.open('https://buzurgai.com', '_blank');
+    window.open('https://mwprogrowth.com', '_blank');
   };
 
   return (
@@ -103,7 +103,7 @@ const ScheduleMeetingSection = () => {
                             className="cursor-pointer hover:bg-accent/20"
                           >
                             <div className="flex items-center">
-                              <Clock className="mr-2 h-4 w-4 text-accent" />
+                              <Clock className="mr-2 h-4 w-4 text-mwpro-light-blue" />
                               {slot}
                             </div>
                           </SelectItem>
@@ -118,11 +118,11 @@ const ScheduleMeetingSection = () => {
                   >
                     <Button 
                       onClick={handleScheduleMeeting}
-                      className="w-full bg-accent hover:bg-accent/90 button-glow"
+                      className="w-full bg-mwpro-blue hover:bg-mwpro-blue/90 button-mwpro"
                       size="lg"
                       asChild
                     >
-                      <a href="https://buzurgai.com" target="_blank" rel="noopener noreferrer">
+                      <a href="https://mwprogrowth.com" target="_blank" rel="noopener noreferrer">
                         Book Your Free Consultation
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
@@ -134,32 +134,32 @@ const ScheduleMeetingSection = () => {
                   <h3 className="text-xl font-semibold mb-4">What to Expect</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
-                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
-                        <span className="h-4 w-4 text-accent">✓</span>
+                      <div className="bg-mwpro-light-blue/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-mwpro-light-blue">✓</span>
                       </div>
                       <span>15-minute personalized session with an AI expert</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
-                        <span className="h-4 w-4 text-accent">✓</span>
+                      <div className="bg-mwpro-light-blue/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-mwpro-light-blue">✓</span>
                       </div>
                       <span>Custom learning path based on your goals</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
-                        <span className="h-4 w-4 text-accent">✓</span>
+                      <div className="bg-mwpro-light-blue/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-mwpro-light-blue">✓</span>
                       </div>
                       <span>Answers to all your questions about the course</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="bg-accent/20 p-1 rounded mr-3 mt-1">
-                        <span className="h-4 w-4 text-accent">✓</span>
+                      <div className="bg-mwpro-light-blue/20 p-1 rounded mr-3 mt-1">
+                        <span className="h-4 w-4 text-mwpro-light-blue">✓</span>
                       </div>
                       <span>Exclusive discounts for early enrollment</span>
                     </li>
                   </ul>
                   
-                  <div className="mt-6 p-4 border border-accent/30 rounded-lg bg-accent/5">
+                  <div className="mt-6 p-4 border border-mwpro-light-blue/30 rounded-lg bg-mwpro-light-blue/5">
                     <p className="italic text-sm">
                       "Our consultation helped me determine if this course was right for my career goals. 
                       The team was knowledgeable and helped me make the right decision."
