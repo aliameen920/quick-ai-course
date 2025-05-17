@@ -42,7 +42,7 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`w-full py-3 px-4 sm:px-6 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300 ${
         scrolled 
-          ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border/20" 
+          ? "bg-mwpro-dark-blue/80 backdrop-blur-md shadow-sm border-b border-border/20" 
           : "bg-transparent"
       }`}
     >
@@ -57,13 +57,16 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent side="left" className="w-[250px] sm:w-[300px] overflow-y-auto">
               <div className="flex flex-col gap-6 mt-8">
-                <h2 className="font-heading font-bold text-xl"><span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span></h2>
+                <div className="flex items-center gap-2">
+                  <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
+                  <h2 className="font-heading font-bold text-xl"><span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span></h2>
+                </div>
                 <div className="flex flex-col space-y-4">
                   {navItems.map((item) => (
                     <a 
                       key={item.name} 
                       href={item.href}
-                      className="text-lg font-medium hover:text-accent transition-colors" 
+                      className="text-lg font-medium hover:text-mwpro-light-blue transition-colors" 
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -84,16 +87,19 @@ const Navbar = () => {
           </Sheet>
         )}
         
-        <motion.h2 
+        <motion.div 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="font-heading font-bold text-xl sm:text-2xl"
+          className="flex items-center gap-2"
         >
-          <Link to="/" className="text-foreground">
-            <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
-          </Link>
-        </motion.h2>
+          <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
+          <h2 className="font-heading font-bold text-xl sm:text-2xl">
+            <Link to="/" className="text-foreground">
+              <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
+            </Link>
+          </h2>
+        </motion.div>
       </div>
       
       {/* Desktop Menu */}
@@ -106,7 +112,7 @@ const Navbar = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.1 * (i + 1), duration: 0.5 }}
             whileHover={{ y: -3 }}
-            className="hover:text-accent transition-colors relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-center"
+            className="hover:text-mwpro-light-blue transition-colors relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-mwpro-light-blue after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-center"
           >
             {item.name}
           </motion.a>
@@ -118,7 +124,7 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button className="bg-accent hover:bg-accent/90 button-glow">
+          <Button className="bg-mwpro-blue hover:bg-mwpro-blue/90 button-glow">
             Get Started
           </Button>
         </motion.div>
@@ -131,7 +137,7 @@ const Navbar = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", damping: 12 }}
-              className="bg-gradient-to-br from-violet-600 to-indigo-700 p-6 rounded-xl relative overflow-hidden"
+              className="bg-gradient-to-br from-mwpro-blue to-mwpro-light-blue p-6 rounded-xl relative overflow-hidden"
             >
               <motion.div 
                 className="absolute top-2 right-2"
@@ -153,7 +159,7 @@ const Navbar = () => {
                 <h3 className="text-xl font-bold text-white mb-2">Limited Time Offer!</h3>
                 <p className="text-white/90 mb-4">Get 20% off when you enroll in the next 24 hours!</p>
                 <Button 
-                  className="w-full bg-white text-indigo-700 hover:bg-white/90" 
+                  className="w-full bg-white text-mwpro-blue hover:bg-white/90" 
                   onClick={() => setShowPopup(false)}
                 >
                   Claim Discount

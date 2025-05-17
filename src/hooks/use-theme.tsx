@@ -25,7 +25,7 @@ export function ThemeProvider({
   // This ensures we're not manipulating the DOM during render
   useEffect(() => {
     // Always set dark theme regardless of state
-    // This ensures the site is always in dark mode
+    // This ensures the site is always in dark mode to match the MWPro branding
     const root = window.document.documentElement
     root.classList.remove("light")
     root.classList.add("dark")

@@ -72,14 +72,17 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-card py-12 border-t">
+    <footer className="bg-mwpro-dark-blue py-12 border-t border-mwpro-blue/20">
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Logo and Description */}
           <div className="md:col-span-3">
-            <h2 className="font-heading font-bold text-2xl">
-              <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
-            </h2>
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
+              <h2 className="font-heading font-bold text-2xl">
+                <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
+              </h2>
+            </div>
             <p className="text-muted-foreground mt-2">
               Master artificial intelligence skills in just 30 days with our comprehensive course.
             </p>
@@ -90,28 +93,28 @@ const Footer = () => {
             <div>
               <h3 className="font-medium text-lg mb-4">Course</h3>
               <ul className="space-y-2">
-                <li><a href="#curriculum" className="text-muted-foreground hover:text-accent">Curriculum</a></li>
-                <li><a href="#features" className="text-muted-foreground hover:text-accent">Features</a></li>
-                <li><a href="#pricing" className="text-muted-foreground hover:text-accent">Pricing</a></li>
-                <li><a href="#book-now" className="text-muted-foreground hover:text-accent">Book Now</a></li>
+                <li><a href="#curriculum" className="text-muted-foreground hover:text-mwpro-light-blue">Curriculum</a></li>
+                <li><a href="#features" className="text-muted-foreground hover:text-mwpro-light-blue">Features</a></li>
+                <li><a href="#pricing" className="text-muted-foreground hover:text-mwpro-light-blue">Pricing</a></li>
+                <li><a href="#book-now" className="text-muted-foreground hover:text-mwpro-light-blue">Book Now</a></li>
               </ul>
             </div>
             
             <div>
               <h3 className="font-medium text-lg mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><Link to="/about" className="text-muted-foreground hover:text-accent">About</Link></li>
-                <li><a href="#testimonials" className="text-muted-foreground hover:text-accent">Testimonials</a></li>
+                <li><Link to="/about" className="text-muted-foreground hover:text-mwpro-light-blue">About</Link></li>
+                <li><a href="#testimonials" className="text-muted-foreground hover:text-mwpro-light-blue">Testimonials</a></li>
               </ul>
             </div>
             
             <div>
               <h3 className="font-medium text-lg mb-4">Support</h3>
               <ul className="space-y-2">
-                <li><Link to="/contact" className="text-muted-foreground hover:text-accent">Contact Us</Link></li>
-                <li><Link to="/privacy" className="text-muted-foreground hover:text-accent">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="text-muted-foreground hover:text-accent">Terms & Conditions</Link></li>
-                <li><Link to="/ai-resources" className="text-muted-foreground hover:text-accent">AI Resources</Link></li>
+                <li><Link to="/contact" className="text-muted-foreground hover:text-mwpro-light-blue">Contact Us</Link></li>
+                <li><Link to="/privacy" className="text-muted-foreground hover:text-mwpro-light-blue">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="text-muted-foreground hover:text-mwpro-light-blue">Terms & Conditions</Link></li>
+                <li><Link to="/ai-resources" className="text-muted-foreground hover:text-mwpro-light-blue">AI Resources</Link></li>
               </ul>
             </div>
           </div>
@@ -121,7 +124,7 @@ const Footer = () => {
             <h3 className="font-medium text-lg mb-4">Subscribe to our Newsletter</h3>
             <p className="text-muted-foreground mb-4">Stay up to date with the latest AI news and course updates</p>
             
-            <div className="newsletter-form bg-card/50 backdrop-blur-sm border border-border/40 rounded-lg p-4">
+            <div className="newsletter-form bg-mwpro-dark-blue/50 backdrop-blur-sm border border-mwpro-blue/20 rounded-lg p-4">
               <form 
                 action="https://gmail.us1.list-manage.com/subscribe/post?u=455f7fd2cfb606dc4995b3a30&amp;id=2a3da9346e&amp;f_id=00051de0f0" 
                 method="post" 
@@ -145,7 +148,7 @@ const Footer = () => {
                     <input type="text" name="b_455f7fd2cfb606dc4995b3a30_2a3da9346e" tabIndex={-1} defaultValue="" />
                   </div>
                   
-                  <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700">
+                  <Button type="submit" className="w-full bg-gradient-to-r from-mwpro-blue to-mwpro-light-blue hover:from-mwpro-blue hover:to-mwpro-blue">
                     <Mail className="h-4 w-4 mr-2" />
                     Subscribe
                   </Button>
@@ -155,12 +158,12 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-12 pt-6 border-t text-center text-muted-foreground text-sm">
+        <div className="mt-12 pt-6 border-t border-mwpro-blue/20 text-center text-muted-foreground text-sm">
           <p>© {new Date().getFullYear()} MWPro Growth. All rights reserved.</p>
           <div className="flex justify-center space-x-4 mt-4">
-            <Link to="/privacy" className="hover:text-accent">Privacy</Link>
-            <Link to="/terms" className="hover:text-accent">Terms</Link>
-            <Link to="/contact" className="hover:text-accent">Contact</Link>
+            <Link to="/privacy" className="hover:text-mwpro-light-blue">Privacy</Link>
+            <Link to="/terms" className="hover:text-mwpro-light-blue">Terms</Link>
+            <Link to="/contact" className="hover:text-mwpro-light-blue">Contact</Link>
           </div>
         </div>
       </div>

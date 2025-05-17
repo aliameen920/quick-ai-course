@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 const Curriculum = () => {
   return (
-    <div className="min-h-screen flex flex-col dark">
+    <div className="min-h-screen flex flex-col dark bg-mwpro-dark-blue">
       <Helmet>
         <title>MWPro Growth Curriculum | Comprehensive 30-Day AI Course</title>
         <meta name="description" content="Explore our comprehensive AI curriculum. Our 30-day structured program takes you from fundamentals to advanced AI concepts with hands-on projects." />

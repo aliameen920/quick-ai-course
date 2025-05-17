@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 const Testimonials = () => {
   return (
-    <div className="min-h-screen flex flex-col dark">
+    <div className="min-h-screen flex flex-col dark bg-mwpro-dark-blue">
       <Helmet>
         <title>MWPro Growth Student Testimonials | Real Success Stories</title>
         <meta name="description" content="Read real testimonials from MWPro Growth students who have transformed their careers and businesses with our comprehensive AI course." />
@@ -39,7 +39,7 @@ const Testimonials = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-accent hover:bg-accent/90 button-glow" size="lg">
+              <Button className="bg-mwpro-blue hover:bg-mwpro-blue/90 button-glow" size="lg">
                 Join Our Community
               </Button>
             </motion.div>

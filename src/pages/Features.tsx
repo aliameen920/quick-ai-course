@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 const Features = () => {
   return (
-    <div className="min-h-screen flex flex-col dark">
+    <div className="min-h-screen flex flex-col dark bg-mwpro-dark-blue">
       <Helmet>
         <title>MWPro Growth Course Features | Premium AI Training Experience</title>
         <meta name="description" content="Discover what makes our AI course exceptional. Expert-led lessons, hands-on projects, fast-track learning, and comprehensive resources to accelerate your AI journey." />
@@ -39,7 +39,7 @@ const Features = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-accent hover:bg-accent/90 button-glow" size="lg">
+              <Button className="bg-mwpro-blue hover:bg-mwpro-blue/90 button-glow" size="lg">
                 Start Your Journey
               </Button>
             </motion.div>

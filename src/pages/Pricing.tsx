@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const Pricing = () => {
   return (
-    <div className="min-h-screen flex flex-col dark">
+    <div className="min-h-screen flex flex-col dark bg-mwpro-dark-blue">
       <Helmet>
         <title>MWPro Growth Course Pricing | Affordable AI Training Options</title>
         <meta name="description" content="View our flexible pricing options for MWPro Growth courses. We offer affordable plans to make comprehensive AI training accessible to everyone." />

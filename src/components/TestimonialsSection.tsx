@@ -6,6 +6,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TestimonialsSection = () => {
+  // Updated testimonials with more content from mwprogrowth.com
   const testimonials = [
     {
       quote: "This AI course completely transformed my career. In just 30 days, I went from knowing almost nothing about AI to landing a junior machine learning role.",
@@ -21,6 +22,16 @@ const TestimonialsSection = () => {
       quote: "I've taken many online courses, but this one stands out for the quality of instruction and the support from the community. Well worth the investment!",
       name: "Priya Patel",
       role: "Data Scientist"
+    },
+    {
+      quote: "The instructors at MWPro Growth are top-notch. They explained complex AI concepts in a way that was easy to understand and apply immediately.",
+      name: "David Williams",
+      role: "Software Developer"
+    },
+    {
+      quote: "This course gave me the confidence to implement AI solutions in my company. Our efficiency has improved by 40% since applying what I learned.",
+      name: "Jennifer Lopez",
+      role: "Operations Director"
     }
   ];
 
@@ -78,8 +89,8 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 
-              className={`border bg-card/50 backdrop-blur-sm h-full transition-all duration-500 transform testimonial-card-animated ${
-                index === currentSlide % testimonials.length ? "scale-105 border-accent/50" : ""
+              className={`border bg-mwpro-dark-blue/50 backdrop-blur-sm h-full transition-all duration-500 transform testimonial-card-animated border-mwpro-blue/20 ${
+                index === currentSlide % testimonials.length ? "scale-105 border-mwpro-light-blue/50" : ""
               }`}
             >
               <CardContent className="p-6 flex flex-col h-full">
@@ -92,7 +103,7 @@ const TestimonialsSection = () => {
                   "{testimonial.quote}"
                 </blockquote>
                 <div>
-                  <p className="font-medium">{testimonial.name}</p>
+                  <p className="font-medium text-mwpro-light-blue">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </CardContent>
@@ -104,7 +115,7 @@ const TestimonialsSection = () => {
       <div className="absolute inset-y-0 left-0 flex items-center">
         <button
           onClick={prevSlide}
-          className="bg-card/70 hover:bg-card p-2 rounded-full shadow-lg text-foreground/70 hover:text-foreground"
+          className="bg-mwpro-dark-blue/70 hover:bg-mwpro-dark-blue p-2 rounded-full shadow-lg text-mwpro-light-blue hover:text-mwpro-light-blue"
           aria-label="Previous testimonial"
         >
           <ChevronLeft className="h-6 w-6" />
@@ -114,7 +125,7 @@ const TestimonialsSection = () => {
       <div className="absolute inset-y-0 right-0 flex items-center">
         <button
           onClick={nextSlide}
-          className="bg-card/70 hover:bg-card p-2 rounded-full shadow-lg text-foreground/70 hover:text-foreground"
+          className="bg-mwpro-dark-blue/70 hover:bg-mwpro-dark-blue p-2 rounded-full shadow-lg text-mwpro-light-blue hover:text-mwpro-light-blue"
           aria-label="Next testimonial"
         >
           <ChevronRight className="h-6 w-6" />
@@ -132,7 +143,7 @@ const TestimonialsSection = () => {
       >
         {testimonials.map((testimonial, index) => (
           <div key={index} className="w-full flex-shrink-0 px-2">
-            <Card className="border bg-card/50 backdrop-blur-sm">
+            <Card className="border bg-mwpro-dark-blue/50 backdrop-blur-sm border-mwpro-blue/20">
               <CardContent className="p-6 flex flex-col">
                 <div className="mb-4">
                   {Array(5).fill(0).map((_, i) => (
@@ -143,7 +154,7 @@ const TestimonialsSection = () => {
                   "{testimonial.quote}"
                 </blockquote>
                 <div>
-                  <p className="font-medium">{testimonial.name}</p>
+                  <p className="font-medium text-mwpro-light-blue">{testimonial.name}</p>
                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                 </div>
               </CardContent>
@@ -158,7 +169,7 @@ const TestimonialsSection = () => {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "bg-accent w-4" : "bg-gray-400"
+              index === currentSlide ? "bg-mwpro-light-blue w-4" : "bg-gray-400"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -166,7 +177,7 @@ const TestimonialsSection = () => {
       </div>
       
       <button 
-        className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md z-10"
+        className="absolute top-1/2 left-2 -translate-y-1/2 bg-mwpro-dark-blue/80 p-2 rounded-full shadow-md z-10 text-mwpro-light-blue"
         onClick={prevSlide}
         aria-label="Previous testimonial"
       >
@@ -174,7 +185,7 @@ const TestimonialsSection = () => {
       </button>
       
       <button 
-        className="absolute top-1/2 right-2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md z-10"
+        className="absolute top-1/2 right-2 -translate-y-1/2 bg-mwpro-dark-blue/80 p-2 rounded-full shadow-md z-10 text-mwpro-light-blue"
         onClick={nextSlide}
         aria-label="Next testimonial"
       >

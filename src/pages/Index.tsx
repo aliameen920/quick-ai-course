@@ -19,7 +19,7 @@ const Index = () => {
   
   useEffect(() => {
     // Exit intent detection
-    const handleMouseLeave = (e) => {
+    const handleMouseLeave = (e: MouseEvent) => {
       // If the mouse leaves towards the top of the page, show the popup
       if (e.clientY <= 0) {
         setShowPromo(true);
@@ -36,7 +36,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col dark overflow-x-hidden">
+    <div className="min-h-screen flex flex-col dark overflow-x-hidden bg-mwpro-dark-blue">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
@@ -66,7 +66,7 @@ const Index = () => {
               damping: 15,
               duration: 0.7 
             }}
-            className="bg-gradient-to-br from-violet-600 to-indigo-700 dark:from-violet-700 dark:to-indigo-900 p-0 rounded-xl relative overflow-hidden"
+            className="bg-gradient-to-br from-mwpro-blue to-mwpro-light-blue dark:from-mwpro-blue dark:to-mwpro-blue/70 p-0 rounded-xl relative overflow-hidden"
           >
             <motion.div 
               className="absolute top-2 right-2 z-10"
@@ -82,7 +82,7 @@ const Index = () => {
             </motion.div>
             
             {/* Banner Image */}
-            <div className="w-full h-32 bg-gradient-to-r from-purple-400 to-indigo-500 relative overflow-hidden">
+            <div className="w-full h-32 bg-gradient-to-r from-mwpro-blue to-mwpro-light-blue relative overflow-hidden">
               <img 
                 src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" 
                 alt="AI Technology" 
@@ -119,7 +119,7 @@ const Index = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
-                  className="w-full bg-white text-indigo-700 hover:bg-white/90 font-medium py-2 rounded-md"
+                  className="w-full bg-white text-mwpro-blue hover:bg-white/90 font-medium py-2 rounded-md"
                 >
                   Claim Your 30% Discount Now
                 </Button>

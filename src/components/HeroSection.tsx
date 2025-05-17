@@ -26,9 +26,9 @@ const HeroSection = () => {
     <div className="relative w-full min-h-[85vh] pb-2 md:pb-8 flex flex-col items-center justify-center overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-500/20 to-blue-500/20 animate-gradient-shift"></div>
-        <div className="absolute top-20 left-1/4 w-72 h-72 bg-purple-500/30 dark:bg-purple-500/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-1/4 w-72 h-72 bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-float-delay"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-mwpro-blue/20 via-mwpro-light-blue/20 to-mwpro-blue/20 animate-gradient-shift"></div>
+        <div className="absolute top-20 left-1/4 w-72 h-72 bg-mwpro-blue/30 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-1/4 w-72 h-72 bg-mwpro-light-blue/20 rounded-full blur-3xl animate-float-delay"></div>
       </div>
       
       <div className="container px-4 md:px-6 flex flex-col items-center text-center gap-3 md:gap-5 pt-0 mt-0">
@@ -38,10 +38,10 @@ const HeroSection = () => {
           animate="visible"
           variants={textAnimation}
           custom={0}
-          className="inline-flex items-center rounded-full border border-accent/30 px-4 py-1.5 text-xs font-medium mt-0 sm:mt-2"
+          className="inline-flex items-center rounded-full border border-mwpro-light-blue/30 px-4 py-1.5 text-xs font-medium mt-0 sm:mt-2"
         >
           <span className="flex items-center gap-1.5">
-            <Zap className="h-3.5 w-3.5 text-pink-500" />
+            <Zap className="h-3.5 w-3.5 text-mwpro-light-blue" />
             <span>Learn AI in just 30 days</span>
           </span>
         </motion.div>
@@ -76,7 +76,7 @@ const HeroSection = () => {
           custom={3}
           className="w-full max-w-2xl mt-1"
         >
-          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl border border-accent/20">
+          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl border border-mwpro-light-blue/20">
             <iframe 
               className="w-full h-full"
               src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
@@ -97,7 +97,7 @@ const HeroSection = () => {
         >
           <Button 
             size={isMobile ? "default" : "lg"} 
-            className="bg-accent hover:bg-accent/90 button-glow text-base md:text-lg px-6 md:px-8 py-4 md:py-6"
+            className="bg-mwpro-blue hover:bg-mwpro-blue/90 button-glow text-base md:text-lg px-6 md:px-8 py-4 md:py-6"
           >
             Buy Now - $149 
             <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />

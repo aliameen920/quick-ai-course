@@ -66,7 +66,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				mwpro: {
+					blue: '#0F4C81', 
+					'light-blue': '#65B2E8',
+					'dark-blue': '#132032',
+					gray: '#E0E0E0'
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -164,7 +170,7 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-				'hero-pattern': 'linear-gradient(90deg, hsla(277, 75%, 84%, 1) 0%, hsla(297, 50%, 51%, 1) 100%)'
+				'hero-pattern': 'linear-gradient(90deg, #0F4C81 0%, #65B2E8 100%)'
 			}
 		}
 	},
