@@ -1,11 +1,9 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
-
 const Footer = () => {
   // Load Mailchimp validation script
   useEffect(() => {
@@ -13,7 +11,6 @@ const Footer = () => {
     script.src = "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js";
     script.async = true;
     document.body.appendChild(script);
-
     script.onload = () => {
       // Initialize Mailchimp validation
       if (window.jQuery) {
@@ -49,30 +46,26 @@ const Footer = () => {
           toast({
             title: "Thank you for subscribing!",
             description: "You'll receive our newsletter updates soon.",
-            duration: 5000,
+            duration: 5000
           });
-          
+
           // Reset the form using the form element's reset method
           (form as HTMLFormElement).reset();
         }
-        
+
         // Allow the form to submit to Mailchimp after showing the toast
         setTimeout(() => {
           (form as HTMLFormElement).submit();
         }, 1000);
       }
     };
-
     document.addEventListener('submit', handleFormSubmit);
-
     return () => {
       document.body.removeChild(script);
       document.removeEventListener('submit', handleFormSubmit);
     };
   }, []);
-
-  return (
-    <footer className="bg-mwpro-dark-blue py-12 border-t border-mwpro-blue/20">
+  return <footer className="bg-mwpro-dark-blue py-12 border-t border-mwpro-blue/20">
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Logo and Description */}
@@ -80,7 +73,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <img src="/lovable-uploads/ecd1e747-bc21-40a7-b50d-7c4c5bd30a51.png" alt="MWPro Growth Logo" className="h-10" />
               <h2 className="font-heading font-bold text-2xl">
-                <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
+                <span className="text-foreground"> Growth</span>
               </h2>
             </div>
             <p className="text-muted-foreground mt-2">
@@ -125,26 +118,15 @@ const Footer = () => {
             <p className="text-muted-foreground mb-4">Stay up to date with the latest AI news and course updates</p>
             
             <div className="newsletter-form bg-mwpro-dark-blue/50 backdrop-blur-sm border border-mwpro-blue/20 rounded-lg p-4">
-              <form 
-                action="https://gmail.us1.list-manage.com/subscribe/post?u=455f7fd2cfb606dc4995b3a30&amp;id=2a3da9346e&amp;f_id=00051de0f0" 
-                method="post" 
-                id="mc-embedded-subscribe-form" 
-                name="mc-embedded-subscribe-form" 
-                className="validate w-full" 
-                target="_blank"
-              >
+              <form action="https://gmail.us1.list-manage.com/subscribe/post?u=455f7fd2cfb606dc4995b3a30&amp;id=2a3da9346e&amp;f_id=00051de0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate w-full" target="_blank">
                 <div className="flex flex-col space-y-3">
-                  <Input 
-                    type="email" 
-                    name="EMAIL" 
-                    id="mce-EMAIL"
-                    placeholder="your@email.com" 
-                    className="w-full" 
-                    required 
-                  />
+                  <Input type="email" name="EMAIL" id="mce-EMAIL" placeholder="your@email.com" className="w-full" required />
                   
                   {/* Hidden field for bot protection */}
-                  <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+                  <div aria-hidden="true" style={{
+                  position: 'absolute',
+                  left: '-5000px'
+                }}>
                     <input type="text" name="b_455f7fd2cfb606dc4995b3a30_2a3da9346e" tabIndex={-1} defaultValue="" />
                   </div>
                   
@@ -167,8 +149,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
