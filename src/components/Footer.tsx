@@ -78,7 +78,7 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="md:col-span-3">
             <div className="flex items-center gap-2 mb-4">
-              <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
+              <img src="/lovable-uploads/ecd1e747-bc21-40a7-b50d-7c4c5bd30a51.png" alt="MWPro Growth Logo" className="h-10" />
               <h2 className="font-heading font-bold text-2xl">
                 <span className="gradient-text">MWPro</span><span className="text-foreground"> Growth</span>
               </h2>

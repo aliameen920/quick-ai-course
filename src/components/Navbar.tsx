@@ -94,7 +94,7 @@ const Navbar = () => {
         >
           {/* Only show logo on desktop */}
           {!isMobile && (
-            <img src="/lovable-uploads/ac8d6063-ce38-445c-b397-d146784f29b5.png" alt="MWPro Growth Logo" className="h-10" />
+            <img src="/lovable-uploads/ecd1e747-bc21-40a7-b50d-7c4c5bd30a51.png" alt="MWPro Growth Logo" className="h-10" />
           )}
           <h2 className="font-heading font-bold text-xl sm:text-2xl">
             <Link to="/" className="text-foreground">
