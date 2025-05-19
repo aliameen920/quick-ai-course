@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -71,7 +72,7 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="md:col-span-3">
             <div className="flex items-center gap-2 mb-4">
-              <img src="/lovable-uploads/ecd1e747-bc21-40a7-b50d-7c4c5bd30a51.png" alt="MWPro Growth Logo" className="h-10" />
+              <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-14" />
               <h2 className="font-heading font-bold text-2xl">
                 <span className="text-foreground"> Growth</span>
               </h2>

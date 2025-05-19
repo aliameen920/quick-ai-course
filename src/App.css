@@ -43,8 +43,8 @@
 }
 
 .button-mwpro {
-  background-color: #132032;
-  color: white;
+  background-color: #65B2E8;
+  color: #132031;
   transition: all 0.3s ease;
 }
 
@@ -52,3 +52,4 @@
   background-color: #0F4C81;
   box-shadow: 0 0 15px rgba(15, 76, 129, 0.5);
 }
+

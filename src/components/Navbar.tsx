@@ -47,7 +47,7 @@ const Navbar = () => {
     opacity: 1
   }} transition={{
     duration: 0.5
-  }} className={`w-full py-3 px-4 sm:px-6 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300 ${scrolled ? "bg-white shadow-sm border-b border-border/20" : "bg-white"}`}>
+  }} className={`w-full py-3 px-4 sm:px-6 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300 ${scrolled ? "bg-[#132031] shadow-sm border-b border-border/20" : "bg-[#132031]"}`}>
       {/* Logo Section - Always shown on both mobile and desktop */}
       <motion.div initial={{
       x: -20,
@@ -59,9 +59,9 @@ const Navbar = () => {
       delay: 0.2,
       duration: 0.5
     }} className="flex items-center gap-2">
-        <img src="/lovable-uploads/ecd1e747-bc21-40a7-b50d-7c4c5bd30a51.png" alt="MWPro Growth Logo" className="h-10" />
+        <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-12 md:h-16" />
         {!isMobile && <h2 className="font-heading font-bold text-xl sm:text-2xl">
-            <Link to="/" className="text-mwpro-dark-blue">
+            <Link to="/" className="text-white">
               
             </Link>
           </h2>}
@@ -80,7 +80,7 @@ const Navbar = () => {
         duration: 0.5
       }} whileHover={{
         y: -3
-      }} className="text-mwpro-dark-blue hover:text-mwpro-blue transition-colors relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-mwpro-blue after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-center">
+      }} className="text-white hover:text-mwpro-light-blue transition-colors relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-mwpro-light-blue after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-center">
             {item.name}
           </motion.a>)}
       </div>
@@ -93,7 +93,7 @@ const Navbar = () => {
       }} whileTap={{
         scale: 0.95
       }}>
-          <Button className="bg-mwpro-dark-blue hover:bg-mwpro-blue text-white button-mwpro">
+          <Button className="bg-mwpro-light-blue hover:bg-mwpro-blue text-[#132031] font-semibold button-mwpro">
             Get Started
           </Button>
         </motion.div>
@@ -101,29 +101,26 @@ const Navbar = () => {
         {/* Mobile Menu Button - Now on the right */}
         {isMobile && <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-mwpro-dark-blue">
+              <Button variant="ghost" size="icon" className="text-white">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[250px] sm:w-[300px] overflow-y-auto bg-white">
+            <SheetContent side="left" className="w-[250px] sm:w-[300px] overflow-y-auto bg-[#132031]">
               <div className="flex flex-col gap-6 mt-8">
                 <div className="flex items-center gap-2">
-                  <h2 className="font-heading font-bold text-xl">
-                    <span className="gradient-text">MWPro</span>
-                    <span className="text-mwpro-dark-blue"> Growth</span>
-                  </h2>
+                  <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-14" />
                 </div>
                 <div className="flex flex-col space-y-4">
-                  {navItems.map(item => <a key={item.name} href={item.href} className="text-lg font-medium text-mwpro-dark-blue hover:text-mwpro-blue transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                  {navItems.map(item => <a key={item.name} href={item.href} className="text-lg font-medium text-white hover:text-mwpro-light-blue transition-colors" onClick={() => setMobileMenuOpen(false)}>
                       {item.name}
                     </a>)}
                 </div>
                 
-                <div className="mt-4 pt-4 border-t">
+                <div className="mt-4 pt-4 border-t border-white/20">
                   <Button className="w-full" variant="outline" onClick={() => setMobileMenuOpen(false)}>
                     About Us
                   </Button>
-                  <Button className="w-full mt-2 bg-mwpro-dark-blue text-white hover:bg-mwpro-blue" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full mt-2 bg-mwpro-light-blue text-[#132031] hover:bg-mwpro-blue font-semibold" onClick={() => setMobileMenuOpen(false)}>
                     Contact
                   </Button>
                 </div>
