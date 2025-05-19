@@ -47,7 +47,7 @@ const Navbar = () => {
     opacity: 1
   }} transition={{
     duration: 0.5
-  }} className={`w-full py-3 px-4 sm:px-6 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300 ${scrolled ? "bg-[#132031] shadow-sm border-b border-border/20" : "bg-[#132031]"}`}>
+  }} className={`w-full py-5 px-4 sm:px-8 md:px-10 flex items-center justify-between sticky top-0 z-40 transition-all duration-300 ${scrolled ? "bg-[#132031] shadow-md border-b border-border/20" : "bg-[#132031]"}`}>
       {/* Logo Section - Always shown on both mobile and desktop */}
       <motion.div initial={{
       x: -20,
@@ -58,9 +58,9 @@ const Navbar = () => {
     }} transition={{
       delay: 0.2,
       duration: 0.5
-    }} className="flex items-center gap-2">
-        <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-12 md:h-16" />
-        {!isMobile && <h2 className="font-heading font-bold text-xl sm:text-2xl">
+    }} className="flex items-center gap-3 px-2">
+        <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-20 md:h-28" />
+        {!isMobile && <h2 className="font-heading font-bold text-2xl sm:text-3xl">
             <Link to="/" className="text-white">
               
             </Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
       </motion.div>
       
       {/* Desktop Menu */}
-      <div className="hidden md:flex items-center gap-6 text-sm font-medium">
+      <div className="hidden md:flex items-center gap-8 text-base font-medium">
         {navItems.map((item, i) => <motion.a key={item.name} href={item.href} initial={{
         y: -10,
         opacity: 0
@@ -86,14 +86,14 @@ const Navbar = () => {
       </div>
       
       {/* Mobile Actions and Menu */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         {/* Get Started Button */}
         <motion.div whileHover={{
         scale: 1.05
       }} whileTap={{
         scale: 0.95
       }}>
-          <Button className="bg-mwpro-light-blue hover:bg-mwpro-blue text-[#132031] font-semibold button-mwpro">
+          <Button size="lg" className="bg-mwpro-light-blue hover:bg-mwpro-blue text-[#132031] font-semibold button-mwpro text-base">
             Get Started
           </Button>
         </motion.div>
@@ -101,26 +101,26 @@ const Navbar = () => {
         {/* Mobile Menu Button - Now on the right */}
         {isMobile && <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-white">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="text-white h-12 w-12">
+                <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[250px] sm:w-[300px] overflow-y-auto bg-[#132031]">
+            <SheetContent side="left" className="w-[280px] sm:w-[320px] overflow-y-auto bg-[#132031]">
               <div className="flex flex-col gap-6 mt-8">
                 <div className="flex items-center gap-2">
-                  <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-14" />
+                  <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-20" />
                 </div>
-                <div className="flex flex-col space-y-4">
-                  {navItems.map(item => <a key={item.name} href={item.href} className="text-lg font-medium text-white hover:text-mwpro-light-blue transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                <div className="flex flex-col space-y-5">
+                  {navItems.map(item => <a key={item.name} href={item.href} className="text-xl font-medium text-white hover:text-mwpro-light-blue transition-colors" onClick={() => setMobileMenuOpen(false)}>
                       {item.name}
                     </a>)}
                 </div>
                 
-                <div className="mt-4 pt-4 border-t border-white/20">
-                  <Button className="w-full" variant="outline" onClick={() => setMobileMenuOpen(false)}>
+                <div className="mt-6 pt-4 border-t border-white/20">
+                  <Button className="w-full text-base" variant="outline" onClick={() => setMobileMenuOpen(false)}>
                     About Us
                   </Button>
-                  <Button className="w-full mt-2 bg-mwpro-light-blue text-[#132031] hover:bg-mwpro-blue font-semibold" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full mt-3 bg-mwpro-light-blue text-[#132031] hover:bg-mwpro-blue font-semibold text-base" size="lg" onClick={() => setMobileMenuOpen(false)}>
                     Contact
                   </Button>
                 </div>

@@ -71,8 +71,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Logo and Description */}
           <div className="md:col-span-3">
-            <div className="flex items-center gap-2 mb-4">
-              <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-14" />
+            <div className="flex items-center gap-3 mb-6">
+              <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-24" />
               <h2 className="font-heading font-bold text-2xl">
                 <span className="text-foreground"> Growth</span>
               </h2>
