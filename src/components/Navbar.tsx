@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -59,7 +58,7 @@ const Navbar = () => {
       delay: 0.2,
       duration: 0.5
     }} className="flex items-center gap-3 px-2">
-        <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-20 md:h-28" />
+        <img src="/lovable-uploads/98a8dd43-3a23-42a5-ac73-4759defd04ed.png" alt="MWPro Growth Logo" className="h-40 md:h-26 object-contain" />
         {!isMobile && <h2 className="font-heading font-bold text-2xl sm:text-3xl">
             <Link to="/" className="text-white">
               
